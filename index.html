@@ -84,22 +84,44 @@
   .logo .mark { height: 40px; }
   .studio-logo { display: block; width: min(100%, 300px); height: auto; margin-top: 14px; filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .5)); }
   .foot-logo { display: block; width: 120px; height: auto; }
-  .top nav { display: flex; gap: 18px; }
-  .top nav a { color: var(--chalk-dim); text-decoration: none; font-weight: 500; font-size: 15px; }
-  .top nav a:hover { color: var(--chalk); }
+  .top .wrap > nav { display: flex; gap: 18px; }
+  .top .wrap > nav a { color: var(--chalk-dim); text-decoration: none; font-weight: 500; font-size: 15px; }
+  .top .wrap > nav a:hover { color: var(--chalk); }
   .lang { display: flex; padding: 3px; gap: 2px; border-radius: 999px; border: 1.5px solid rgba(241, 234, 216, .3); }
   .lang button { border: 0; background: none; color: var(--chalk); font: 400 14px/1 var(--display); padding: 6px 10px; border-radius: 999px; cursor: pointer; }
   .lang button[aria-pressed="true"] { background: var(--beer); color: var(--ink); }
-  .top nav a { white-space: nowrap; }
-  @media (max-width: 960px) { .top nav { display: none; } }
+  .top .wrap > nav a { white-space: nowrap; }
+  @media (max-width: 960px) { .top .wrap > nav { display: none; } }
   /* el botón de jugar de la cabecera: sale cuando ya no se ve el de la portada (en el móvil, en lugar del nombre del logo) */
   .top .play { padding: 9px 16px; gap: 6px; font-size: 16px; white-space: nowrap; box-shadow: 0 3px 0 var(--beer-deep), 0 6px 16px rgba(255, 179, 0, .2); }
   .top .play svg { width: 15px; height: 15px; }
-  .js .top .play { display: none; }
-  .js.past-hero .top .play { display: inline-flex; animation: pop .25s ease-out; }
+  .io .top .play { display: none; }
+  .io.past-hero .top .play { display: inline-flex; animation: pop .25s ease-out; }
   @keyframes pop { from { opacity: 0; transform: translateY(-6px); } }
   @media (max-width: 560px) { .past-hero .logo img:not(.mark) { display: none; } }
-  @media (max-width: 1120px) { .top nav { gap: 14px; } .top nav a { font-size: 14px; } }
+  /* al saltar a una sección, que la cabecera fija no tape el título */
+  section[id] { scroll-margin-top: 72px; }
+  /* el menú del móvil: el botón de las tres rayas y la lista que se despliega bajo la cabecera */
+  .burger { display: none; width: 44px; height: 44px; flex: none; border: 1.5px solid rgba(241, 234, 216, .3); border-radius: 12px; background: none;
+            color: var(--chalk); cursor: pointer; padding: 0; place-content: center; }
+  .burger svg { width: 22px; height: 22px; display: block; }
+  .burger .x, .burger[aria-expanded="true"] .bars { display: none; }
+  .burger[aria-expanded="true"] .x { display: block; }
+  .burger[aria-expanded="true"] { border-color: var(--beer); color: var(--beer); }
+  .menu-panel { position: absolute; left: 0; right: 0; top: 100%; max-height: calc(100vh - 64px); max-height: calc(100dvh - 64px); overflow-y: auto;
+                background: #1b130f; border-bottom: 1px solid rgba(241, 234, 216, .12); box-shadow: 0 24px 40px rgba(0, 0, 0, .5);
+                padding: 8px var(--gutter) 24px; animation: drop .2s ease-out; }
+  .menu-panel[hidden] { display: none; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-8px); } }
+  .menu-panel ul { list-style: none; margin: 0 auto; padding: 0; max-width: 560px; }
+  .menu-panel li a { display: flex; align-items: center; justify-content: space-between; padding: 14px 4px; border-bottom: 1px dashed rgba(241, 234, 216, .14);
+                     color: var(--foam); text-decoration: none; font: 400 22px/1.2 var(--display); }
+  .menu-panel li a::after { content: "›"; color: var(--beer); font-size: 26px; }
+  .menu-panel li a:active { color: var(--beer); }
+  .menu-panel .btn { margin: 20px auto 0; display: flex; justify-content: center; max-width: 560px; }
+  @media (max-width: 960px) { .js .burger { display: grid; } }
+  @media (max-width: 400px) { .top .wrap { gap: 10px; } .logo img { height: 36px; } .logo .mark { height: 32px; } }
+  @media (max-width: 1120px) { .top .wrap > nav { gap: 14px; } .top .wrap > nav a { font-size: 14px; } }
 
   /* ---------- portada: la pared del bar ---------- */
   .hero { position: relative; overflow: hidden; padding-block: clamp(40px, 7vw, 88px) clamp(48px, 7vw, 96px);
@@ -348,7 +370,30 @@
     <div class="lang" role="group" aria-label="Idioma / Language">
       <button type="button" data-set="es" aria-pressed="true">ES</button><button type="button" data-set="en" aria-pressed="false">EN</button>
     </div>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú / Menu">
+      <svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
   </div>
+  <nav class="menu-panel" id="menu" aria-label="Menú / Menu" hidden>
+    <ul>
+      <li><a href="#como"><span class="es">Cómo se juega</span><span class="en">How to play</span></a></li>
+      <li><a href="#retos"><span class="es">Reta a tus amigos</span><span class="en">Challenge your friends</span></a></li>
+      <li><a href="#realista"><span class="es">Modo realista</span><span class="en">Realistic mode</span></a></li>
+      <li><a href="#cervezas"><span class="es">Las 16 cervezas</span><span class="en">The 16 beers</span></a></li>
+      <li><a href="#aspecto"><span class="es">Tu bar, a tu manera</span><span class="en">Your bar, your way</span></a></li>
+      <li><a href="#trailer"><span class="es">Tráiler</span><span class="en">Trailer</span></a></li>
+      <li><a href="#capturas"><span class="es">Capturas</span><span class="en">Screenshots</span></a></li>
+      <li><a href="#probar"><span class="es">Pruébala antes que nadie</span><span class="en">Try it before anyone else</span></a></li>
+      <li><a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a></li>
+      <li><a href="#estudio"><span class="es">El estudio</span><span class="en">The studio</span></a></li>
+      <li><a href="prensa/"><span class="es">Prensa</span><span class="en">Press kit</span></a></li>
+    </ul>
+    <a class="btn beer" href="how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+      <span><span class="es">Jugar la demo gratis</span><span class="en">Play the free demo</span></span>
+    </a>
+  </nav>
 </header>
 
 <main>
@@ -704,9 +749,18 @@
   let saved = null; try { saved = localStorage.getItem('cg_lang'); } catch (e) {}
   setLang(saved || (/^es\b/i.test(navigator.language || '') ? 'es' : 'en'));
   for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => setLang(b.dataset.set));
+  root.classList.add('js');
+  // el menú del móvil: se abre y se cierra con el botón, al elegir una sección, con Esc o tocando fuera
+  const burger = document.querySelector('.burger'), menu = document.getElementById('menu');
+  const openMenu = on => { burger.setAttribute('aria-expanded', String(on)); menu.hidden = !on; };
+  burger.addEventListener('click', () => openMenu(menu.hidden));
+  menu.addEventListener('click', e => { if (e.target.closest('a')) openMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { openMenu(false); burger.focus(); } });
+  addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.top')) openMenu(false); });
+  matchMedia('(min-width: 961px)').addEventListener('change', e => { if (e.matches) openMenu(false); });
   // el botón de jugar de la cabecera sale cuando el de la portada ya ha quedado arriba
   if ('IntersectionObserver' in window) {
-    root.classList.add('js');
+    root.classList.add('io');
     new IntersectionObserver(([e]) => root.classList.toggle('past-hero', !e.isIntersecting && e.boundingClientRect.top < 0))
       .observe(document.querySelector('.hero .cta'));
   }
