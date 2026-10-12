@@ -124,10 +124,7 @@
   .phone { justify-self: center; position: relative; width: min(100%, 320px); border-radius: 40px; padding: 12px;
            background: linear-gradient(145deg, #3b3b40, #121214); box-shadow: 0 30px 60px rgba(0, 0, 0, .55), inset 0 0 0 2px #55555c; transform: rotate(3deg); }
   .phone .screen { position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 30px; overflow: hidden; background: #000; }
-  .phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: slides 16s infinite; }
-  .phone img:nth-child(1) { opacity: 1; animation-delay: 0s; } .phone img:nth-child(2) { animation-delay: 4s; }
-  .phone img:nth-child(3) { animation-delay: 8s; } .phone img:nth-child(4) { animation-delay: 12s; }
-  @keyframes slides { 0%, 22% { opacity: 1; } 27%, 95% { opacity: 0; } 100% { opacity: 1; } }
+  .phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .phone::after { content: ""; position: absolute; top: 20px; left: 50%; width: 70px; height: 18px; margin-left: -35px; border-radius: 999px; background: #0c0c0e; }
   .sticker { position: absolute; right: -14px; bottom: -20px; transform: rotate(-12deg); padding: 10px 14px; background: var(--red); color: #fff;
              font: 400 16px/1.1 var(--hand); text-align: center; box-shadow: 0 6px 14px rgba(0, 0, 0, .35); border-radius: 4px; }
@@ -232,6 +229,14 @@
   .faq details[open] summary::after { content: "–"; }
   .faq details p { margin-top: 8px; color: var(--chalk-dim); max-width: 64ch; }
 
+  /* ---------- el tráiler: un móvil grande, con sonido si le das ---------- */
+  .trailer { padding-block: clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(255, 196, 110, .18), transparent 70%), linear-gradient(180deg, #2a120b, var(--wall-deep)); }
+  .trailer .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .trailer .intro { margin-top: 12px; max-width: 44ch; color: var(--chalk); opacity: .9; }
+  .trailer video { display: block; width: min(80vw, 340px); aspect-ratio: 9 / 16; border-radius: 28px; border: 8px solid #141416; background: #000;
+                   box-shadow: 0 30px 60px rgba(0, 0, 0, .55), 0 0 0 2px #55555c; }
+  @media (max-width: 760px) { .trailer .wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; } .trailer .intro { margin-inline: auto; } }
+
   /* ---------- el estudio ---------- */
   .studio { padding-block: clamp(56px, 8vw, 96px); background: linear-gradient(180deg, #331209, var(--wall-deep)); }
   .studio .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
@@ -256,10 +261,7 @@
   footer .credits { grid-column: 1 / -1; font-size: 13px; line-height: 1.6; }
   @media (max-width: 640px) { footer .wrap { grid-template-columns: 1fr; } }
 
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .phone img { animation: none; } .phone img:nth-child(n+2) { display: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
@@ -269,6 +271,7 @@
     <a class="logo" href="#" aria-label="Chapuza Game"><img class="mark" src="img/chapuza-mark.webp" alt="" width="141" height="96"><img src="img/chapuza-word.webp" alt="Chapuza Game" width="243" height="96"></a>
     <nav aria-label="Secciones">
       <a href="#como"><span class="es">Cómo se juega</span><span class="en">How to play</span></a>
+      <a href="#trailer"><span class="es">Tráiler</span><span class="en">Trailer</span></a>
       <a href="#realista"><span class="es">Modo realista</span><span class="en">Realistic mode</span></a>
       <a href="#cervezas"><span class="es">Las cervezas</span><span class="en">The beers</span></a>
       <a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a>
@@ -314,10 +317,8 @@
       </div>
       <div class="phone" aria-hidden="true">
         <div class="screen">
-          <img data-shot="2" alt="" src="img/screenshot-es-2.jpg">
-          <img data-shot="5" alt="" src="img/screenshot-es-5.jpg">
-          <img data-shot="6" alt="" src="img/screenshot-es-6.jpg">
-          <img data-shot="9" alt="" src="img/screenshot-es-9.jpg">
+          <video id="loop" autoplay muted loop playsinline preload="auto" data-src="video/loop-{l}" data-poster="img/screenshot-{l}-2.jpg"
+                 poster="img/screenshot-es-2.jpg"></video>
         </div>
         <div class="sticker"><span class="es">¡Sin registros!</span><span class="en">No sign-up!</span></div>
       </div>
@@ -457,6 +458,18 @@
     </div>
   </section>
 
+  <section class="trailer" id="trailer">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="es">El tráiler</span><span class="en">The trailer</span></p>
+        <h2 style="margin-top:10px"><span class="es">Medio minuto de cañas</span><span class="en">Half a minute of beers</span></h2>
+        <p class="intro"><span class="es">Una que se sale, una perfecta, la jarra de litro de la Oktoberfest, la nota de Don Ramón y tu bar en la playa. Con el sonido del juego: dale al play con el volumen puesto.</span><span class="en">One that spills, a perfect one, the Oktoberfest litre stein, Don Ramón's score and your bar on the beach. With the game's own sound: hit play with the volume up.</span></p>
+      </div>
+      <video id="trailerVideo" controls playsinline preload="none" data-src="video/trailer-{l}" data-poster="video/trailer-{l}.jpg"
+             poster="video/trailer-es.jpg" data-umami-event="ver-trailer"></video>
+    </div>
+  </section>
+
   <section class="tiles" id="capturas">
     <div class="wrap">
       <p class="eyebrow"><span class="es">Así se ve</span><span class="en">What it looks like</span></p>
@@ -532,11 +545,20 @@
 <script>
   // idioma: el del navegador la primera vez, luego el que elijas
   const root = document.documentElement;
+  // si el sistema pide menos movimiento, el vídeo de la portada se queda quieto (en su primera imagen)
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // los vídeos, en WebM (más ligero) donde se puede y si no en MP4, que lo reproduce todo el mundo
+  const EXT = document.createElement('video').canPlayType('video/webm; codecs="vp9"') ? '.webm' : '.mp4';
+  if (still) { const v = document.getElementById('loop'); v.removeAttribute('autoplay'); v.pause(); }
   function setLang(l) {
     root.dataset.lang = l; root.lang = l;
     document.title = l === 'es' ? 'How to Pour Beer · El juego de tirar cañas · Chapuza Game' : 'How to Pour Beer · The beer pouring game · Chapuza Game';
     for (const b of document.querySelectorAll('.lang button')) b.setAttribute('aria-pressed', String(b.dataset.set === l));
     for (const img of document.querySelectorAll('img[data-shot]')) img.src = `img/screenshot-${l}-${img.dataset.shot}.jpg`;
+    for (const v of document.querySelectorAll('video[data-src]')) {
+      const src = v.dataset.src.replace('{l}', l) + EXT;
+      if (v.getAttribute('src') !== src) { v.poster = v.dataset.poster.replace('{l}', l); v.src = src; if (v.autoplay && !still) v.play().catch(() => {}); }
+    }
     try { localStorage.setItem('cg_lang', l); } catch (e) {}
   }
   let saved = null; try { saved = localStorage.getItem('cg_lang'); } catch (e) {}
