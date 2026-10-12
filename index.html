@@ -125,6 +125,16 @@
   .menu-panel li a::after { content: "›"; color: var(--beer); font-size: 26px; }
   .menu-panel li a:active { color: var(--beer); }
   .menu-panel .btn { margin: 20px auto 0; display: flex; justify-content: center; max-width: 560px; }
+  /* las redes: en el menú del móvil, debajo del botón de jugar; en la cabecera del ordenador, cuando caben */
+  .follow { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 18px auto 4px; max-width: 560px; color: var(--chalk-dim); font-weight: 500; }
+  .follow > span { margin-right: 4px; }
+  .follow a, .top .soc a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(241, 234, 216, .3); color: var(--chalk); }
+  .follow a:hover, .top .soc a:hover { border-color: var(--beer); color: var(--beer); }
+  .follow svg, .top .soc svg { width: 22px; height: 22px; }
+  .top .soc { display: none; gap: 6px; margin: 0; flex: none; }
+  .top .soc a { width: 36px; height: 36px; }
+  .top .soc svg { width: 18px; height: 18px; }
+  @media (min-width: 1290px) { .top .soc { display: flex; } }
   @media (max-width: 1149px) { .js .burger { display: grid; } }
   @media (max-width: 400px) { .top .wrap { gap: 10px; } .logo img { height: 36px; } .logo .mark { height: 32px; } }
   @media (max-width: 360px) { .top .wrap { gap: 8px; } .lang button { padding: 6px 8px; } .burger { width: 40px; height: 40px; } }
@@ -344,6 +354,11 @@
     <a class="btn beer play" href="how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="cabecera">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg><span><span class="es">Jugar</span><span class="en">Play</span></span>
     </a>
+    <div class="soc" role="group" aria-label="Redes / Social">
+      <a href="https://www.instagram.com/chapuzagame/" aria-label="Instagram" title="Instagram" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+      <a href="https://www.tiktok.com/@chapuza.game" aria-label="TikTok" title="TikTok" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" aria-label="YouTube" title="YouTube" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg></a>
+    </div>
     <div class="lang" role="group" aria-label="Idioma / Language">
       <button type="button" data-set="es" aria-pressed="true">ES</button><button type="button" data-set="en" aria-pressed="false">EN</button>
     </div>
@@ -367,6 +382,10 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
       <span><span class="es">Jugar la demo gratis</span><span class="en">Play the free demo</span></span>
     </a>
+    <p class="follow"><span class="es">Síguenos</span><span class="en">Follow us</span>
+      <a href="https://www.instagram.com/chapuzagame/" aria-label="Instagram" title="Instagram" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+      <a href="https://www.tiktok.com/@chapuza.game" aria-label="TikTok" title="TikTok" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" aria-label="YouTube" title="YouTube" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg></a></p>
   </nav>
 </header>
 
@@ -564,7 +583,8 @@
         <a class="btn en" href="mailto:chapuzagame@gmail.com?subject=I%20want%20to%20test%20How%20to%20Pour%20Beer&amp;body=Hi!%20I%27d%20like%20to%20try%20the%20app%20before%20it%20comes%20out.%20My%20Google%20Play%20Gmail%20is%3A%20" data-umami-event="tester">Count me in</a>
         <p class="small"><span class="es">Solo usamos tu correo para invitarte a la prueba. ¿Sin Android? Síguenos y te avisamos cuando salga:</span><span class="en">We only use your email to invite you to the test. No Android? Follow us and we'll let you know when it's out:</span>
           <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a> ·
-          <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a></p>
+          <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a> ·
+          <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube">YouTube</a></p>
       </div>
     </div>
   </section>
@@ -613,6 +633,7 @@
         <p class="social">
           <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>Instagram</a>
           <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>TikTok</a>
+          <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg>YouTube</a>
         </p>
       </div>
       <ul class="workshop" aria-label="Juegos / Games">
@@ -634,6 +655,7 @@
       <a href="privacy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
       <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a>
       <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a>
+      <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube">YouTube</a>
       <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a>
     </nav>
     <p class="credits">
