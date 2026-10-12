@@ -78,8 +78,9 @@
   /* ---------- cabecera ---------- */
   .top { position: sticky; top: 0; z-index: 10; background: rgba(27, 19, 15, .86); backdrop-filter: blur(10px);
          -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(241, 234, 216, .08); padding-top: env(safe-area-inset-top, 0px); }
-  .top .wrap { display: flex; align-items: center; gap: 20px; min-height: 64px; }
-  .logo { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-right: auto; }
+  .top .wrap { display: flex; align-items: center; gap: 20px; min-height: 64px; max-width: 1320px; }
+  .top .wrap > nav, .top .lang, .top .play, .burger { flex: none; }
+  .logo { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-right: auto; flex: none; }
   .logo img { display: block; height: 44px; width: auto; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .5)); }
   .logo .mark { height: 40px; }
   .studio-logo { display: block; width: min(100%, 300px); height: auto; margin-top: 14px; filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .5)); }
@@ -87,11 +88,16 @@
   .top .wrap > nav { display: flex; gap: 18px; }
   .top .wrap > nav a { color: var(--chalk-dim); text-decoration: none; font-weight: 500; font-size: 15px; }
   .top .wrap > nav a:hover { color: var(--chalk); }
+  /* la sección en la que estás, marcada (en la barra y en el menú del móvil) */
+  .top .wrap > nav a { position: relative; }
+  .top .wrap > nav a.on { color: var(--beer); }
+  .top .wrap > nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 3px; border-radius: 2px; background: var(--beer); }
+  .menu-panel li a.on { color: var(--beer); }
   .lang { display: flex; padding: 3px; gap: 2px; border-radius: 999px; border: 1.5px solid rgba(241, 234, 216, .3); }
   .lang button { border: 0; background: none; color: var(--chalk); font: 400 14px/1 var(--display); padding: 6px 10px; border-radius: 999px; cursor: pointer; }
   .lang button[aria-pressed="true"] { background: var(--beer); color: var(--ink); }
   .top .wrap > nav a { white-space: nowrap; }
-  @media (max-width: 960px) { .top .wrap > nav { display: none; } }
+  @media (max-width: 1149px) { .top .wrap > nav { display: none; } }
   /* el botón de jugar de la cabecera: sale cuando ya no se ve el de la portada (en el móvil, en lugar del nombre del logo) */
   .top .play { padding: 9px 16px; gap: 6px; font-size: 16px; white-space: nowrap; box-shadow: 0 3px 0 var(--beer-deep), 0 6px 16px rgba(255, 179, 0, .2); }
   .top .play svg { width: 15px; height: 15px; }
@@ -119,9 +125,10 @@
   .menu-panel li a::after { content: "›"; color: var(--beer); font-size: 26px; }
   .menu-panel li a:active { color: var(--beer); }
   .menu-panel .btn { margin: 20px auto 0; display: flex; justify-content: center; max-width: 560px; }
-  @media (max-width: 960px) { .js .burger { display: grid; } }
+  @media (max-width: 1149px) { .js .burger { display: grid; } }
   @media (max-width: 400px) { .top .wrap { gap: 10px; } .logo img { height: 36px; } .logo .mark { height: 32px; } }
-  @media (max-width: 1120px) { .top .wrap > nav { gap: 14px; } .top .wrap > nav a { font-size: 14px; } }
+  @media (max-width: 360px) { .top .wrap { gap: 8px; } .lang button { padding: 6px 8px; } .burger { width: 40px; height: 40px; } }
+  @media (max-width: 1219px) { .top .wrap > nav { gap: 14px; } .top .wrap > nav a { font-size: 14px; } }
 
   /* ---------- portada: la pared del bar ---------- */
   .hero { position: relative; overflow: hidden; padding-block: clamp(40px, 7vw, 88px) clamp(48px, 7vw, 96px);
@@ -362,7 +369,9 @@
       <a href="#realista"><span class="es">Modo realista</span><span class="en">Realistic mode</span></a>
       <a href="#cervezas"><span class="es">Las cervezas</span><span class="en">The beers</span></a>
       <a href="#trailer"><span class="es">Tráiler</span><span class="en">Trailer</span></a>
+      <a href="#probar"><span class="es">Pruébala</span><span class="en">Try it</span></a>
       <a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a>
+      <a href="prensa/"><span class="es">Prensa</span><span class="en">Press</span></a>
     </nav>
     <a class="btn beer play" href="how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="cabecera">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg><span><span class="es">Jugar</span><span class="en">Play</span></span>
@@ -757,7 +766,18 @@
   menu.addEventListener('click', e => { if (e.target.closest('a')) openMenu(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { openMenu(false); burger.focus(); } });
   addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.top')) openMenu(false); });
-  matchMedia('(min-width: 961px)').addEventListener('change', e => { if (e.matches) openMenu(false); });
+  matchMedia('(min-width: 1150px)').addEventListener('change', e => { if (e.matches) openMenu(false); });
+  // la sección en la que estás, marcada en la barra y en el menú: la que cruza la mitad de la pantalla
+  if ('IntersectionObserver' in window) {
+    const links = [...document.querySelectorAll('.top a[href^="#"]:not([href="#"])')];
+    const spy = new IntersectionObserver(es => {
+      for (const e of es) if (e.isIntersecting) for (const a of links) {
+        const on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      }
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    for (const sec of document.querySelectorAll('main > section')) spy.observe(sec);
+  }
   // el botón de jugar de la cabecera sale cuando el de la portada ya ha quedado arriba
   if ('IntersectionObserver' in window) {
     root.classList.add('io');
