@@ -154,8 +154,6 @@
   .cta-note { margin-top: 14px; font-size: 15px; color: var(--chalk); opacity: .85; }
   .cta-note b { color: var(--beer); font-weight: 700; }
   .cta-scope { margin-top: 4px; font-size: 14px; color: var(--chalk-dim); max-width: 52ch; }
-  /* los controles de ordenador, en pequeño: las teclas como teclas */
-  .pc { margin-top: 18px; font-size: 15px; line-height: 1.6; color: var(--chalk-dim); max-width: 60ch; }
   kbd { display: inline-block; min-width: 1.6em; padding: 1px 6px; border-radius: 5px; text-align: center; font: 700 13px/1.4 var(--body);
         color: var(--ink); background: var(--foam); box-shadow: 0 2px 0 var(--chalk-dim); }
 
@@ -183,56 +181,35 @@
            box-shadow: inset 0 0 80px rgba(0, 0, 0, .45); }
   .board h2 { font-family: var(--hand); font-size: clamp(30px, 4.6vw, 46px); color: var(--chalk); transform: rotate(-1.5deg); }
   .board .intro { margin-top: 10px; color: var(--chalk-dim); max-width: 60ch; }
-  .napkins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 32px); margin-top: 40px; list-style: none; padding: 0; }
-  .napkin { position: relative; background: var(--napkin); color: var(--ink); padding: 26px 22px 24px; border-radius: 2px;
-            box-shadow: 0 10px 22px rgba(0, 0, 0, .35); background-image: repeating-linear-gradient(0deg, transparent 0 23px, rgba(160, 120, 60, .1) 23px 24px); }
-  .napkin:nth-child(1) { transform: rotate(-2deg); } .napkin:nth-child(2) { transform: rotate(1.4deg); margin-top: 14px; } .napkin:nth-child(3) { transform: rotate(-.8deg); }
-  .napkin::before { content: ""; position: absolute; top: -12px; left: 50%; width: 90px; height: 26px; margin-left: -45px; transform: rotate(-3deg);
-                    background: rgba(255, 244, 190, .7); box-shadow: 0 1px 2px rgba(0, 0, 0, .15); }
-  .napkin .n { font: 400 40px/1 var(--display); color: var(--red); }
-  .napkin h3 { font-size: 23px; margin: 6px 0 6px; color: var(--ink); }
-  .napkin p { font-size: 15.5px; line-height: 1.5; color: #4a3626; }
-  .napkin svg { width: 100%; height: 120px; margin: 14px 0 4px; }
-  @media (max-width: 760px) { .napkins { grid-template-columns: 1fr; max-width: 420px; } .napkin:nth-child(2) { margin-top: 0; } }
 
-  /* la pizarra de "lo que hay": como la carta de un bar, con puntitos hasta el precio */
-  .menu { margin-top: clamp(48px, 7vw, 80px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 56px; }
-  .menu h3 { grid-column: 1 / -1; font-family: var(--hand); font-size: clamp(26px, 3.6vw, 36px); color: var(--beer); margin-bottom: 12px; transform: rotate(-1deg); }
-  .item { display: flex; align-items: baseline; gap: 10px; padding: 8px 0; min-width: 0; }
-  .item b { font: 400 21px/1.2 var(--display); white-space: nowrap; }
-  .item .dots { flex: 1; min-width: 20px; border-bottom: 3px dotted rgba(241, 234, 216, .35); transform: translateY(-5px); }
-  .item .d { font: 400 17px/1.3 var(--hand); color: var(--chalk-dim); text-align: right; max-width: 60%; }
-  @media (max-width: 760px) { .menu { grid-template-columns: 1fr; } .item { flex-wrap: wrap; } .item .dots { display: none; } .item .d { max-width: none; text-align: left; flex-basis: 100%; } }
-
-  /* ---------- el modo realista: la barra de noche, con el foco encima del grifo ---------- */
-  .real { padding-block: clamp(56px, 8vw, 96px); position: relative; overflow: hidden;
-          background: radial-gradient(ellipse 55% 70% at 78% 40%, rgba(255, 200, 110, .2), transparent 70%), linear-gradient(180deg, #2a120b, var(--wall-deep)); }
-  .real .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 56px); align-items: center; }
-  .real .intro { margin-top: 12px; max-width: 48ch; color: var(--chalk); opacity: .9; }
-  .gestures { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 14px; counter-reset: g; }
-  .gestures li { position: relative; padding-left: 48px; color: var(--chalk-dim); font-size: 15.5px; line-height: 1.45; counter-increment: g; }
-  .gestures li::before { content: counter(g); position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%; display: grid; place-content: center;
-                         background: var(--beer); color: var(--ink); font: 400 19px/1 var(--display); box-shadow: 0 3px 0 var(--beer-deep); }
-  .gestures b { display: block; font: 400 21px/1.2 var(--display); color: var(--foam); }
-  .real .score { margin-top: 22px; padding: 16px 18px; max-width: 52ch; background: var(--napkin); color: var(--ink); border-radius: 2px; font-size: 15.5px; line-height: 1.5;
-                 box-shadow: 0 10px 22px rgba(0, 0, 0, .35); transform: rotate(-.8deg); }
-  /* en grande, las tres capturas en fila; en el móvil, deslizando como la galería */
-  @media (min-width: 901px) {
-    .real .real-shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; margin-top: 0; padding: 8px 0 0; }
-    .real .real-shots .shot { width: auto; }
-    .real .real-shots .shot:nth-child(2) { transform: translateY(-14px); }
+  /* ---------- tres maneras de jugar: una servilleta por modo, con su captura ---------- */
+  .modes-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.6vw, 28px); margin-top: 34px; }
+  .mode { display: flex; flex-direction: column; background: var(--napkin); color: var(--ink); border-radius: 6px; overflow: hidden; box-shadow: 0 12px 26px rgba(0, 0, 0, .4); }
+  .mode img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-bottom: 6px solid var(--wood); }
+  .mode .mt { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 20px; }
+  .mode .tag { font: 700 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+  .mode h3 { font-size: 28px; color: var(--ink); }
+  .mode .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 9px; }
+  .mode .steps li { position: relative; padding-left: 34px; font-size: 15px; line-height: 1.4; color: #4a3626; counter-increment: s; }
+  .mode .steps li::before { content: counter(s); position: absolute; left: 0; top: -1px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-content: center;
+                            background: var(--beer); color: var(--ink); font: 400 14px/1 var(--display); box-shadow: 0 2px 0 var(--beer-deep); }
+  .mode .steps b { color: var(--ink); }
+  .mode .mfoot { margin-top: auto; padding-top: 10px; border-top: 2px dashed rgba(90, 70, 50, .25); font: 400 15px/1.35 var(--hand); color: #8f3510; }
+  .swipe { display: none; margin-top: 8px; font: 400 15px/1 var(--hand); color: var(--beer); }
+  @media (max-width: 820px) {
+    .modes-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 22px calc(-1 * var(--gutter)) 0; padding: 4px var(--gutter) 16px;
+                 scroll-padding-inline: var(--gutter); scrollbar-color: var(--beer) transparent; }
+    .mode { flex: 0 0 min(84%, 340px); scroll-snap-align: start; }
+    .mode img { aspect-ratio: 1 / 1; }
+    .swipe { display: block; }
   }
-  @media (max-width: 900px) { .real .wrap { grid-template-columns: 1fr; } }
-
   /* ---------- las cervezas: medallones de grifo sobre la madera de la barra ---------- */
   .bar { padding-block: clamp(56px, 8vw, 96px); background: linear-gradient(180deg, #8a5228 0, var(--wood) 14px, var(--wood-deep) 100%); position: relative; }
   .bar::before { content: ""; position: absolute; inset: 0; opacity: .35; pointer-events: none;
                  background: repeating-linear-gradient(92deg, rgba(0, 0, 0, .14) 0 2px, transparent 2px 9px, rgba(255, 220, 170, .05) 9px 11px, transparent 11px 23px); }
   .bar .wrap { position: relative; }
   .bar .intro { margin-top: 10px; max-width: 60ch; color: var(--chalk); opacity: .85; }
-  .taps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; margin-top: 40px; list-style: none; padding: 0; }
-  @media (min-width: 520px) { .taps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (min-width: 1080px) { .taps { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+  .taps { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 28px 18px; margin-top: 40px; list-style: none; padding: 0; }
   .tap { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; min-width: 0; }
   .medal { width: min(108px, 100%); aspect-ratio: 1; border-radius: 50%; padding: 6px; background: linear-gradient(135deg, #f4f6f8, #9aa1a8 45%, #e8ecef 60%, #7d848b);
            box-shadow: 0 8px 18px rgba(0, 0, 0, .4); }
@@ -243,13 +220,18 @@
   .tap h3 { font-size: 20px; }
   .tap p { font-size: 14.5px; line-height: 1.4; color: var(--chalk-dim); max-width: 22ch; }
   .tap .lvl { font: 400 14px/1 var(--hand); color: var(--beer); }
-  /* en el móvil, la carta en pequeño: cuatro por fila, el medallón, el nombre y el nivel */
-  @media (max-width: 519px) {
-    .taps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 8px; margin-top: 28px; }
-    .tap { gap: 6px; } .tap p { display: none; }
+  /* en tablet, sin descripción; en el móvil, en una fila que se desliza */
+  @media (max-width: 1079px) { .tap p { display: none; } .tap h3 { font-size: 16px; } }
+  @media (max-width: 819px) {
+    .taps { display: flex; overflow-x: auto; gap: 12px; margin: 26px calc(-1 * var(--gutter)) 0; padding: 4px var(--gutter) 14px;
+            scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-color: var(--beer) transparent; }
+    .tap { flex: 0 0 80px; gap: 6px; scroll-snap-align: start; }
     .tap h3 { font-size: 14px; line-height: 1.1; } .tap .lvl { font-size: 12px; }
-    .medal { padding: 4px; } .medal div { padding: 3px; } .medal small { font-size: 6px; letter-spacing: .04em; } .medal strong { font-size: 10px; }
+    .medal { padding: 4px; } .medal div { padding: 3px; } .medal small { font-size: 6.5px; letter-spacing: .04em; } .medal strong { font-size: 10.5px; }
   }
+  .looks-line { margin-top: clamp(32px, 5vw, 48px); padding: 18px 20px; max-width: 760px; background: var(--napkin); color: var(--ink); border-radius: 2px;
+                box-shadow: 0 10px 22px rgba(0, 0, 0, .35); transform: rotate(-.6deg); }
+  .looks-line h3 { font-size: 24px; } .looks-line p { margin-top: 6px; font-size: 15.5px; line-height: 1.5; color: #4a3626; }
 
   /* ---------- retos: la conversación con tu amigo ---------- */
   .retos { padding-block: clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 60% 70% at 75% 45%, rgba(255, 196, 110, .18), transparent 70%),
@@ -284,26 +266,10 @@
   .ticket .small { font-size: 14.5px; opacity: .85; }
   .ticket a:not(.btn) { color: var(--ink); font-weight: 700; }
 
-  /* ---------- capturas, sobre azulejos ---------- */
-  .tiles { padding-block: clamp(56px, 8vw, 96px); background-color: var(--tile);
-           background-image:
-             radial-gradient(circle at 0 0, var(--tile-ochre) 0 7px, transparent 7.5px), radial-gradient(circle at 100% 0, var(--tile-ochre) 0 7px, transparent 7.5px),
-             radial-gradient(circle at 0 100%, var(--tile-ochre) 0 7px, transparent 7.5px), radial-gradient(circle at 100% 100%, var(--tile-ochre) 0 7px, transparent 7.5px),
-             linear-gradient(45deg, transparent 38%, var(--tile-blue) 38% 62%, transparent 62%), linear-gradient(-45deg, transparent 38%, var(--tile-blue) 38% 62%, transparent 62%);
-           background-size: 56px 56px; position: relative; }
-  .tiles::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(34, 16, 11, .82), rgba(34, 16, 11, .9)); }
-  .tiles .wrap { position: relative; }
   .shots { display: flex; gap: 18px; overflow-x: auto; padding: 28px 4px 18px; margin-top: 8px; scroll-snap-type: x mandatory; scrollbar-color: var(--beer) transparent; }
   .shot { flex: 0 0 auto; width: clamp(180px, 22vw, 230px); scroll-snap-align: start; margin: 0; }
   .shot img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 20px; border: 6px solid #141416; box-shadow: 0 14px 28px rgba(0, 0, 0, .45); }
   .shot figcaption { margin-top: 10px; font-size: 14.5px; color: var(--chalk-dim); }
-
-  /* ---------- tu bar, a tu manera: como el realista, pero con las capturas a la izquierda ---------- */
-  .looks { background: radial-gradient(ellipse 55% 70% at 22% 45%, rgba(255, 200, 110, .16), transparent 70%), linear-gradient(180deg, var(--wall-deep), #2a120b); }
-  .looks .kinds { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
-  .looks .kinds li { color: var(--chalk-dim); font-size: 15.5px; line-height: 1.45; }
-  .looks .kinds b { font: 400 21px/1.2 var(--display); color: var(--foam); margin-right: 6px; }
-  @media (min-width: 901px) { .looks .wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } .looks .real-shots { order: -1; } }
 
   /* ---------- preguntas: en la pizarra ---------- */
   .faq { background: var(--board); padding-block: clamp(56px, 8vw, 96px); border-top: 10px solid var(--wood); box-shadow: inset 0 0 80px rgba(0, 0, 0, .45); }
@@ -325,6 +291,9 @@
   @media (max-width: 760px) { .trailer .wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; } .trailer .intro { margin-inline: auto; }
                               .trailer .cta { justify-content: center; } }
   .faq .cta { margin-top: 32px; }
+  .trailer .gallery { display: block; justify-items: normal; text-align: left; margin-top: clamp(40px, 6vw, 64px); }
+  .trailer .gallery .shots { width: 100%; }
+  .trailer .gallery h3 { font-size: clamp(24px, 3vw, 30px); color: var(--foam); }
 
   /* ---------- el estudio ---------- */
   .studio { padding-block: clamp(56px, 8vw, 96px); background: linear-gradient(180deg, #331209, var(--wall-deep)); }
@@ -364,9 +333,8 @@
   <div class="wrap">
     <a class="logo" href="#" aria-label="Chapuza Game"><img class="mark" src="img/chapuza-mark.webp" alt="" width="141" height="96"><img src="img/chapuza-word.webp" alt="Chapuza Game" width="243" height="96"></a>
     <nav aria-label="Secciones">
-      <a href="#como"><span class="es">Cómo se juega</span><span class="en">How to play</span></a>
+      <a href="#modos"><span class="es">Modos de juego</span><span class="en">Game modes</span></a>
       <a href="#retos"><span class="es">Retos</span><span class="en">Challenges</span></a>
-      <a href="#realista"><span class="es">Modo realista</span><span class="en">Realistic mode</span></a>
       <a href="#cervezas"><span class="es">Las cervezas</span><span class="en">The beers</span></a>
       <a href="#trailer"><span class="es">Tráiler</span><span class="en">Trailer</span></a>
       <a href="#probar"><span class="es">Pruébala</span><span class="en">Try it</span></a>
@@ -386,13 +354,10 @@
   </div>
   <nav class="menu-panel" id="menu" aria-label="Menú / Menu" hidden>
     <ul>
-      <li><a href="#como"><span class="es">Cómo se juega</span><span class="en">How to play</span></a></li>
+      <li><a href="#modos"><span class="es">Tres maneras de jugar</span><span class="en">Three ways to play</span></a></li>
       <li><a href="#retos"><span class="es">Reta a tus amigos</span><span class="en">Challenge your friends</span></a></li>
-      <li><a href="#realista"><span class="es">Modo realista</span><span class="en">Realistic mode</span></a></li>
       <li><a href="#cervezas"><span class="es">Las 16 cervezas</span><span class="en">The 16 beers</span></a></li>
-      <li><a href="#aspecto"><span class="es">Tu bar, a tu manera</span><span class="en">Your bar, your way</span></a></li>
-      <li><a href="#trailer"><span class="es">Tráiler</span><span class="en">Trailer</span></a></li>
-      <li><a href="#capturas"><span class="es">Capturas</span><span class="en">Screenshots</span></a></li>
+      <li><a href="#trailer"><span class="es">Tráiler y capturas</span><span class="en">Trailer and screenshots</span></a></li>
       <li><a href="#probar"><span class="es">Pruébala antes que nadie</span><span class="en">Try it before anyone else</span></a></li>
       <li><a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a></li>
       <li><a href="#estudio"><span class="es">El estudio</span><span class="en">The studio</span></a></li>
@@ -447,66 +412,51 @@
     </div>
   </section>
 
-  <section class="board" id="como">
+  <section class="board modes" id="modos">
     <div class="wrap">
-      <h2><span class="es">Cómo se tira una caña</span><span class="en">How to pour a beer</span></h2>
-      <p class="intro"><span class="es">Tres pasos, una franja verde y ninguna excusa.</span><span class="en">Three steps, one green band and no excuses.</span></p>
-      <ol class="napkins">
-        <li class="napkin">
-          <span class="n">1</span>
-          <svg viewBox="0 0 200 120" aria-hidden="true">
-            <rect x="0" y="0" width="200" height="120" fill="none"/>
-            <path d="M70 8h60l-7 106H77z" fill="rgba(210,230,255,.35)" stroke="#2a160b" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M74.6 78h50.8l-2.4 36H77z" fill="#f7b733"/>
-            <path d="M100 0v78" stroke="#e8a12a" stroke-width="5" stroke-linecap="round"/>
-            <rect x="62" y="30" width="76" height="16" fill="rgba(77,255,122,.35)" stroke="#2f8a4a" stroke-dasharray="5 4" stroke-width="2"/>
-          </svg>
-          <h3><span class="es">Mantén pulsado</span><span class="en">Hold down</span></h3>
-          <p><span class="es">El grifo se abre y sale la cerveza. Cada nivel sale más deprisa.</span><span class="en">The tap opens and the beer flows. Every level it flows faster.</span></p>
-        </li>
-        <li class="napkin">
-          <span class="n">2</span>
-          <svg viewBox="0 0 200 120" aria-hidden="true">
-            <path d="M70 8h60l-7 106H77z" fill="rgba(210,230,255,.35)" stroke="#2a160b" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M73.4 58h53.2l-3.6 56H77z" fill="#f7b733"/>
-            <path d="M73.4 52h53.2l-.4 6H73.8z" fill="#fff8e7"/>
-            <rect x="62" y="30" width="76" height="16" fill="rgba(77,255,122,.35)" stroke="#2f8a4a" stroke-dasharray="5 4" stroke-width="2"/>
-            <path d="M74 56h52" stroke="#2a160b" stroke-width="2" stroke-dasharray="5 4"/>
-            <path d="M154 56l18-10v20z" fill="#c0392b"/><text class="es" x="152" y="86" font-family="Permanent Marker, cursive" font-size="13" fill="#c0392b">¡ya!</text><text class="en" x="150" y="86" font-family="Permanent Marker, cursive" font-size="13" fill="#c0392b">now!</text>
-          </svg>
-          <h3><span class="es">Suelta antes de la franja</span><span class="en">Let go before the band</span></h3>
-          <p><span class="es">Aún cae un chorrito y la espuma sigue subiendo. Si sueltas tarde, se te sale.</span><span class="en">A last drip still falls and the foam keeps rising. Let go late and it spills.</span></p>
-        </li>
-        <li class="napkin">
-          <span class="n">3</span>
-          <svg viewBox="0 0 200 120" aria-hidden="true">
-            <path d="M70 8h60l-7 106H77z" fill="rgba(210,230,255,.35)" stroke="#2a160b" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M72.6 46h54.8l-4.4 68H77z" fill="#f7b733"/>
-            <path d="M71.6 36h56.8l-.7 10H72.3z" fill="#fff8e7"/>
-            <rect x="62" y="30" width="76" height="16" fill="rgba(77,255,122,.35)" stroke="#2f8a4a" stroke-dasharray="5 4" stroke-width="2"/>
-            <text x="100" y="24" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="20" fill="#e0860c" stroke="#2a160b" stroke-width="4" paint-order="stroke" class="es">¡PERFECTA!</text>
-            <text x="100" y="24" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="20" fill="#e0860c" stroke="#2a160b" stroke-width="4" paint-order="stroke" class="en">PERFECT!</text>
-          </svg>
-          <h3><span class="es">Acaba en la franja verde</span><span class="en">Finish in the green band</span></h3>
-          <p><span class="es">Cuanto más centrada, más puntos. En el centro exacto, perfecta.</span><span class="en">The more centred, the more points. Dead centre: perfect.</span></p>
-        </li>
-      </ol>
-      <p class="pc"><span class="es">En el ordenador, igual: mantén pulsado el ratón o la barra <kbd>espacio</kbd>.</span><span class="en">On a computer, same thing: hold the mouse button or the <kbd>space</kbd> bar.</span></p>
-
-      <div class="menu" aria-label="Lo que hay en el juego">
-        <h3><span class="es">Hoy en la barra</span><span class="en">On the bar today</span></h3>
-        <p class="item"><b><span class="es">Modo clásico</span><span class="en">Classic mode</span></b><span class="dots"></span><span class="d"><span class="es">3 vidas y un grifo cada vez más rápido</span><span class="en">3 lives, an ever faster tap</span></span></p>
-        <p class="item"><b><span class="es">Modo realista</span><span class="en">Realistic mode</span></b><span class="dots"></span><span class="d"><span class="es">inclina el vaso, endereza, remata</span><span class="en">tilt, straighten, top it off</span></span></p>
-        <p class="item"><b><span class="es">Mi bar</span><span class="en">My bar</span></b><span class="dots"></span><span class="d"><span class="es">de la barra de pie al estadio</span><span class="en">from a standing bar to a stadium</span></span></p>
-        <p class="item"><b><span class="es">La carta</span><span class="en">The beers</span></b><span class="dots"></span><span class="d"><span class="es">16 cervezas, de la caña a la imperial</span><span class="en">16 beers, from lager to imperial stout</span></span></p>
-        <p class="item"><b>Oktoberfest</b><span class="dots"></span><span class="d"><span class="es">desde el nivel 19, por litros</span><span class="en">from level 19, by the litre</span></span></p>
-        <p class="item"><b><span class="es">Tapas</span><span class="en">Tapas</span></b><span class="dots"></span><span class="d"><span class="es">7 en la cocina, de aceitunas a jamón</span><span class="en">7 in the kitchen, olives to ham</span></span></p>
-        <p class="item"><b><span class="es">Retos</span><span class="en">Challenges</span></b><span class="dots"></span><span class="d"><span class="es">mándale tu marca a quien quieras</span><span class="en">send your score to anyone</span></span></p>
-        <p class="item"><b><span class="es">Encargos</span><span class="en">Jobs</span></b><span class="dots"></span><span class="d"><span class="es">los clientes de siempre te piden cosas</span><span class="en">the regulars ask you for things</span></span></p>
-        <p class="item"><b><span class="es">Carnet de camarero</span><span class="en">Bartender ID</span></b><span class="dots"></span><span class="d"><span class="es">6 rangos y 56 logros</span><span class="en">6 ranks, 56 achievements</span></span></p>
-        <p class="item"><b><span class="es">Aspecto</span><span class="en">Looks</span></b><span class="dots"></span><span class="d"><span class="es">3 estilos de bar, 10 pintas, 7 vasos y 9 carnets</span><span class="en">3 bar styles, 10 outfits, 7 glasses and 9 cards</span></span></p>
-        <p class="item"><b><span class="es">Idiomas</span><span class="en">Languages</span></b><span class="dots"></span><span class="d"><span class="es">español e inglés</span><span class="en">English and Spanish</span></span></p>
-        <p class="item"><b><span class="es">Precio</span><span class="en">Price</span></b><span class="dots"></span><span class="d"><span class="es">gratis (con anuncios y compras opcionales)</span><span class="en">free (with ads and optional purchases)</span></span></p>
+      <h2><span class="es">Tres maneras de jugar</span><span class="en">Three ways to play</span></h2>
+      <p class="intro"><span class="es">Las tres con el mismo grifo y las mismas 16 cervezas. Elige cómo quieres tirar.</span><span class="en">All three with the same tap and the same 16 beers. Pick how you want to pour.</span></p>
+      <p class="swipe"><span class="es">Desliza para ver las tres →</span><span class="en">Swipe to see all three →</span></p>
+      <div class="modes-row" tabindex="0" aria-label="Modos de juego / Game modes">
+        <article class="mode">
+          <img data-shot="2" src="img/screenshot-es-2.jpg" alt="" loading="lazy" style="object-position: 50% 42%">
+          <div class="mt">
+            <p class="tag"><span class="es">Reflejos</span><span class="en">Reflexes</span></p>
+            <h3><span class="es">Modo clásico</span><span class="en">Classic mode</span></h3>
+            <ol class="steps">
+              <li><b><span class="es">Mantén pulsado</span><span class="en">Hold down</span></b> <span class="es">y sale la cerveza.</span><span class="en">and the beer flows.</span></li>
+              <li><b><span class="es">Suelta antes de la franja:</span><span class="en">Let go before the band:</span></b> <span class="es">aún cae un chorrito y la espuma sigue subiendo.</span><span class="en">a last drip still falls and the foam keeps rising.</span></li>
+              <li><b><span class="es">Acaba en la franja verde.</span><span class="en">Finish in the green band.</span></b> <span class="es">En el centro exacto, perfecta.</span><span class="en">Dead centre: perfect.</span></li>
+            </ol>
+            <p class="mfoot"><span class="es">3 vidas, un grifo cada vez más rápido y la Oktoberfest en el nivel 19.</span><span class="en">3 lives, an ever faster tap and the Oktoberfest at level 19.</span></p>
+          </div>
+        </article>
+        <article class="mode">
+          <img data-shot="6" src="img/screenshot-es-6.jpg" alt="" loading="lazy" style="object-position: 50% 6%">
+          <div class="mt">
+            <p class="tag"><span class="es">Oficio</span><span class="en">Craft</span></p>
+            <h3><span class="es">Modo realista</span><span class="en">Realistic mode</span></h3>
+            <ol class="steps">
+              <li><b><span class="es">Enjuaga e inclina el vaso</span><span class="en">Rinse and tilt the glass</span></b> <span class="es">y abre el grifo: la cerveza resbala por la pared.</span><span class="en">and open the tap: the beer slides down the side.</span></li>
+              <li><b><span class="es">Endereza y remata al centro</span><span class="en">Straighten and finish in the middle</span></b> <span class="es">para hacer la corona; si sobresale, espátula.</span><span class="en">to build the head; if it sticks out, skim it.</span></li>
+              <li><b><span class="es">Don Ramón te pone nota</span><span class="en">Don Ramón scores you</span></b> <span class="es">de 0 a 100: con dos estrellas, la siguiente cerveza.</span><span class="en">out of 100: two stars unlock the next beer.</span></li>
+            </ol>
+            <p class="mfoot"><span class="es">Cada cerveza en su vaso, de la caña a la imperial en copa balón.</span><span class="en">Each beer in its own glass, from lager to imperial stout in a snifter.</span></p>
+          </div>
+        </article>
+        <article class="mode">
+          <img data-shot="4" src="img/screenshot-es-4.jpg" alt="" loading="lazy" style="object-position: 50% 100%">
+          <div class="mt">
+            <p class="tag"><span class="es">Tu negocio</span><span class="en">Your business</span></p>
+            <h3><span class="es">Mi bar</span><span class="en">My bar</span></h3>
+            <ol class="steps">
+              <li><b><span class="es">Sirve tú:</span><span class="en">Pour yourself:</span></b> <span class="es">cada caña buena sube el ambiente.</span><span class="en">every good beer lifts the vibe.</span></li>
+              <li><b><span class="es">Mejora mesas, grifos y camareros</span><span class="en">Upgrade tables, taps and waiters</span></b> <span class="es">y amplía el local cuando se llene.</span><span class="en">and expand the place when it fills up.</span></li>
+              <li><b><span class="es">Tapas y encargos</span><span class="en">Tapas and jobs</span></b> <span class="es">de los clientes de siempre.</span><span class="en">from the regulars.</span></li>
+            </ol>
+            <p class="mfoot"><span class="es">De la barra de pie al estadio.</span><span class="en">From a standing counter to a stadium.</span></p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -521,7 +471,6 @@
           <li><b><span class="es">En el clásico</span><span class="en">In classic mode</span></b><span class="es">tus cañas en cuadraditos: 🟩 perfecta, 🟨 buena, ⬜ corta, 🟥 pasada y 💦 derramada.</span><span class="en">your pours as little squares: 🟩 perfect, 🟨 good, ⬜ short, 🟥 over and 💦 spilled.</span></li>
           <li><b><span class="es">En el realista</span><span class="en">In realistic mode</span></b><span class="es">la nota de Don Ramón, con la misma cerveza.</span><span class="en">Don Ramón's score, on the same beer.</span></li>
           <li><b><span class="es">¡Restriégaselo!</span><span class="en">Rub it in!</span></b><span class="es">si le ganas, se lo mandas; a él le sale «¡Revancha!» y vuelta a empezar.</span><span class="en">beat them and send it back; they get "Rematch!" and off you go again.</span></li>
-          <li><b><span class="es">Sin trampas</span><span class="en">No cheating</span></b><span class="es">un reto antiguo no vale si ya hay uno más nuevo.</span><span class="en">an old challenge doesn't count once there's a newer one.</span></li>
         </ul>
         <div class="cta">
           <a class="btn beer" href="how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="retos">
@@ -544,34 +493,11 @@
     </div>
   </section>
 
-  <section class="real" id="realista">
-    <div class="wrap">
-      <div class="real-text">
-        <p class="eyebrow"><span class="es">Modo realista</span><span class="en">Realistic mode</span></p>
-        <h2 style="margin-top:10px"><span class="es">Como en la barra de verdad</span><span class="en">Just like behind a real bar</span></h2>
-        <p class="intro"><span class="es">El vaso en la mano, el grifo abierto del todo y Don Ramón, que lleva cuarenta años tirando cañas, mirándote.</span><span class="en">Glass in hand, tap wide open and Don Ramón, who has been pouring beers for forty years, watching you.</span></p>
-        <ol class="gestures">
-          <li><b><span class="es">Enjuaga el vaso</span><span class="en">Rinse the glass</span></b><span class="es">Un vaso seco hace más espuma.</span><span class="en">A dry glass foams more.</span></li>
-          <li><b><span class="es">Inclínalo y abre</span><span class="en">Tilt it and open up</span></b><span class="es">Mantén pulsado y mueve el dedo: a la derecha inclinas, a la izquierda enderezas. La cerveza resbala por la pared.</span><span class="en">Hold and slide your finger: right to tilt, left to straighten. The beer slides down the side.</span></li>
-          <li><b><span class="es">Remata al centro</span><span class="en">Finish in the middle</span></b><span class="es">Endereza a tiempo y acaba echando al centro para hacer la corona.</span><span class="en">Straighten in time and finish pouring into the middle to build the head.</span></li>
-          <li><b><span class="es">Corta la espuma</span><span class="en">Skim the head</span></b><span class="es">Si sobresale del borde, pasa la espátula antes de servir.</span><span class="en">If it sticks out over the rim, run the skimmer across before serving.</span></li>
-        </ol>
-        <p class="pc"><span class="es">En el ordenador: con el ratón, o con <kbd>espacio</kbd> para abrir, <kbd>←</kbd> <kbd>→</kbd> para inclinar, <kbd>E</kbd> para enjuagar, <kbd>C</kbd> para cortar la espuma e <kbd>Intro</kbd> para servir.</span><span class="en">On a computer: use the mouse, or <kbd>space</kbd> to pour, <kbd>←</kbd> <kbd>→</kbd> to tilt, <kbd>E</kbd> to rinse, <kbd>C</kbd> to skim and <kbd>Enter</kbd> to serve.</span></p>
-        <p class="score"><span class="es">Don Ramón te pone nota de 0 a 100 y hasta tres estrellas. Con dos estrellas se abre la siguiente cerveza: dieciséis, cada una en su vaso, de la caña a la imperial en copa balón. Con sus cinco rangos, de Aprendiz de grifo a Catedrático del grifo, y 12 logros.</span><span class="en">Don Ramón scores you out of 100, with up to three stars. Two stars unlock the next beer: sixteen of them, each in its own glass, from a lager to an imperial stout in a snifter. With five ranks, from Tap apprentice to Professor of the tap, and 12 achievements.</span></p>
-      </div>
-      <div class="real-shots shots" tabindex="0" aria-label="Capturas del modo realista / Realistic mode screenshots">
-        <figure class="shot"><img data-shot="5" alt="" loading="lazy" src="img/screenshot-es-5.jpg"><figcaption><span class="es">Inclinada, resbalando por la pared</span><span class="en">Tilted, sliding down the side</span></figcaption></figure>
-        <figure class="shot"><img data-shot="6" alt="" loading="lazy" src="img/screenshot-es-6.jpg"><figcaption><span class="es">¡De manual! La nota de Don Ramón</span><span class="en">Textbook pour! Don Ramón's score</span></figcaption></figure>
-        <figure class="shot"><img data-shot="7" alt="" loading="lazy" src="img/screenshot-es-7.jpg"><figcaption><span class="es">Con dos estrellas, la siguiente</span><span class="en">Two stars open the next one</span></figcaption></figure>
-      </div>
-    </div>
-  </section>
-
   <section class="bar" id="cervezas">
     <div class="wrap">
       <p class="eyebrow"><span class="es">De grifo</span><span class="en">On tap</span></p>
       <h2 style="margin-top:10px"><span class="es">Dieciséis cervezas, dieciséis maneras de fallar</span><span class="en">Sixteen beers, sixteen ways to fail</span></h2>
-      <p class="intro"><span class="es">De menos a más difícil de tirar. Cada una sale de su grifo con su chorro, su espuma y su vaso, y las marcas son todas inventadas. Salen en los tres modos: en el clásico, con los niveles; en el realista, con estrellas; y en Mi bar, comprándolas para la carta.</span><span class="en">From easiest to hardest to pour. Each comes from its own tap with its own flow, foam and glass, and every brand is made up. They're in all three modes: in classic they arrive with the levels, in realistic mode with stars, and in My bar you buy them for the menu.</span></p>
+      <p class="intro"><span class="es">De menos a más difícil de tirar, cada una con su chorro, su espuma y su vaso. Las marcas son todas inventadas.</span><span class="en">From easiest to hardest to pour, each with its own flow, foam and glass. Every brand is made up.</span></p>
       <ul class="taps">
         <li class="tap"><div class="medal" style="--c:#1f6b3a;--k:#f6ecd0"><div><small>CERVEZAS</small><strong>PACO</strong></div></div><h3><span class="es">Caña</span><span class="en">Lager</span></h3><p><span class="es">La de toda la vida</span><span class="en">The good old classic</span></p><span class="lvl"><span class="es">nivel 1</span><span class="en">level 1</span></span></li>
         <li class="tap"><div class="medal" style="--c:#f2d22e;--k:#1f6b3a"><div><small>CLARITA</small><strong>PACO</strong></div></div><h3><span class="es">Clara</span><span class="en">Shandy</span></h3><p><span class="es">Con limón: tranquila y con poca espuma</span><span class="en">With lemon: calm and not very foamy</span></p><span class="lvl"><span class="es">nivel 3</span><span class="en">level 3</span></span></li>
@@ -590,27 +516,9 @@
         <li class="tap"><div class="medal" style="--c:#3b2a1a;--k:#f0c060"><div><small>BOCK</small><strong>EL<br>CHIVO</strong></div></div><h3>Bock</h3><p><span class="es">Fuerte, lenta y con sorpresa al final</span><span class="en">Strong, slow, with a surprise at the end</span></p><span class="lvl"><span class="es">nivel 29</span><span class="en">level 29</span></span></li>
         <li class="tap"><div class="medal" style="--c:#2a0f2f;--k:#e8c76a"><div><small>IMPERIAL</small><strong>LA<br>ZARINA</strong></div></div><h3>Imperial</h3><p><span class="es">Negra, espesa, y la espuma tarda una eternidad</span><span class="en">Black, thick, and the head takes forever</span></p><span class="lvl"><span class="es">nivel 31</span><span class="en">level 31</span></span></li>
       </ul>
-    </div>
-  </section>
-
-  <section class="real looks" id="aspecto">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow"><span class="es">Aspecto</span><span class="en">Looks</span></p>
-        <h2 style="margin-top:10px"><span class="es">Tu bar, a tu manera</span><span class="en">Your bar, your way</span></h2>
-        <p class="intro"><span class="es">Un chiringuito en la playa, una taberna irlandesa o una Bierhalle alemana. Tus camareros, de torero, de chulapo o de Papá Noel. Y la caña, en vaso de neón o con su rodaja de limón.</span><span class="en">A beach bar, an Irish pub or a German beer hall. Your waiters dressed as a bullfighter, a Madrid chulapo or Santa. And the beer in a neon glass or with a slice of lemon.</span></p>
-        <ul class="kinds">
-          <li><b><span class="es">3 estilos de bar</span><span class="en">3 bar styles</span></b><span class="es">chiringuito de playa, taberna irlandesa y Bierhalle alemana</span><span class="en">beach bar, Irish pub and German beer hall</span></li>
-          <li><b><span class="es">10 pintas</span><span class="en">10 outfits</span></b><span class="es">para tus camareros, del pirata al guiri playero</span><span class="en">for your waiters, from pirate to beach tourist</span></li>
-          <li><b><span class="es">7 vasos</span><span class="en">7 glasses</span></b><span class="es">escarchado, grabado, borde de oro, plástico de feria...</span><span class="en">frosted, engraved, gold rim, fairground plastic...</span></li>
-          <li><b><span class="es">9 carnets y 3 decoraciones</span><span class="en">9 cards and 3 decorations</span></b><span class="es">de feria, de Halloween, guirnaldas, farolillos...</span><span class="en">fairground, Halloween, fairy lights, lanterns...</span></li>
-        </ul>
-        <p class="score"><span class="es">Unas cuantas se ganan jugando: llegando a la Oktoberfest, subiendo de rango o sirviendo cañas. El resto, en la tienda, sueltas o en packs.</span><span class="en">Quite a few are earned by playing: reaching the Oktoberfest, ranking up or pouring beers. The rest are in the shop, one by one or in bundles.</span></p>
-      </div>
-      <div class="real-shots shots" tabindex="0" aria-label="Capturas del aspecto / Looks screenshots">
-        <figure class="shot"><img data-shot="9" alt="" loading="lazy" src="img/screenshot-es-9.jpg"><figcaption><span class="es">Chiringuito de playa</span><span class="en">Beach bar</span></figcaption></figure>
-        <figure class="shot"><img data-shot="10" alt="" loading="lazy" src="img/screenshot-es-10.jpg"><figcaption><span class="es">Bierhalle alemana</span><span class="en">German beer hall</span></figcaption></figure>
-        <figure class="shot"><img data-shot="11" alt="" loading="lazy" src="img/screenshot-es-11.jpg"><figcaption><span class="es">Tu carnet, de feria</span><span class="en">Your ID, fairground style</span></figcaption></figure>
+      <div class="looks-line">
+        <h3><span class="es">Y tu bar, a tu manera</span><span class="en">And your bar, your way</span></h3>
+        <p><span class="es">Un chiringuito en la playa, una taberna irlandesa o una Bierhalle alemana; 10 pintas para tus camareros, 7 vasos, 9 carnets y 3 decoraciones. Unas se ganan jugando y el resto, en la tienda.</span><span class="en">A beach bar, an Irish pub or a German beer hall; 10 outfits for your waiters, 7 glasses, 9 cards and 3 decorations. Some are earned by playing and the rest are in the shop.</span></p>
       </div>
     </div>
   </section>
@@ -618,7 +526,7 @@
   <section class="trailer" id="trailer">
     <div class="wrap">
       <div>
-        <p class="eyebrow"><span class="es">El tráiler</span><span class="en">The trailer</span></p>
+        <p class="eyebrow"><span class="es">Míralo en marcha</span><span class="en">See it in action</span></p>
         <h2 style="margin-top:10px"><span class="es">Medio minuto de cañas</span><span class="en">Half a minute of beers</span></h2>
         <p class="intro"><span class="es">Una que se sale, una perfecta, la jarra de litro de la Oktoberfest, la nota de Don Ramón y tu bar en la playa. Con el sonido del juego: dale al play con el volumen puesto.</span><span class="en">One that spills, a perfect one, the Oktoberfest litre stein, Don Ramón's score and your bar on the beach. With the game's own sound: hit play with the volume up.</span></p>
         <div class="cta">
@@ -631,18 +539,17 @@
       <video id="trailerVideo" controls playsinline preload="none" data-src="video/trailer-{l}" data-poster="video/trailer-{l}.jpg"
              poster="video/trailer-es.jpg" data-umami-event="ver-trailer"></video>
     </div>
-  </section>
-
-  <section class="tiles" id="capturas">
-    <div class="wrap">
-      <p class="eyebrow"><span class="es">Así se ve</span><span class="en">What it looks like</span></p>
-      <h2 style="margin-top:10px"><span class="es">Del primer culín al estadio</span><span class="en">From the first drop to the stadium</span></h2>
+    <div class="wrap gallery">
+      <h3><span class="es">Del primer culín al estadio</span><span class="en">From the first drop to the stadium</span></h3>
       <div class="shots" tabindex="0" aria-label="Capturas / Screenshots">
         <figure class="shot"><img data-shot="1" alt="" loading="lazy" src="img/screenshot-es-1.jpg"><figcaption><span class="es">El menú: clásico, realista, Mi bar y tienda</span><span class="en">The menu: classic, realistic, My bar and shop</span></figcaption></figure>
-        <figure class="shot"><img data-shot="2" alt="" loading="lazy" src="img/screenshot-es-2.jpg"><figcaption><span class="es">Una perfecta, justo en el centro</span><span class="en">A perfect pour, dead centre</span></figcaption></figure>
         <figure class="shot"><img data-shot="3" alt="" loading="lazy" src="img/screenshot-es-3.jpg"><figcaption><span class="es">La carpa de la Oktoberfest</span><span class="en">The Oktoberfest tent</span></figcaption></figure>
-        <figure class="shot"><img data-shot="4" alt="" loading="lazy" src="img/screenshot-es-4.jpg"><figcaption><span class="es">Mi bar: comandas, encargos y mejoras</span><span class="en">My bar: orders, jobs and upgrades</span></figcaption></figure>
+        <figure class="shot"><img data-shot="5" alt="" loading="lazy" src="img/screenshot-es-5.jpg"><figcaption><span class="es">Realista: inclinada, resbalando por la pared</span><span class="en">Realistic: tilted, sliding down the side</span></figcaption></figure>
+        <figure class="shot"><img data-shot="7" alt="" loading="lazy" src="img/screenshot-es-7.jpg"><figcaption><span class="es">La carta del realista</span><span class="en">The realistic beer menu</span></figcaption></figure>
+        <figure class="shot"><img data-shot="9" alt="" loading="lazy" src="img/screenshot-es-9.jpg"><figcaption><span class="es">Mi bar: chiringuito de playa</span><span class="en">My bar: beach bar</span></figcaption></figure>
+        <figure class="shot"><img data-shot="10" alt="" loading="lazy" src="img/screenshot-es-10.jpg"><figcaption><span class="es">Mi bar: Bierhalle alemana</span><span class="en">My bar: German beer hall</span></figcaption></figure>
         <figure class="shot"><img data-shot="8" alt="" loading="lazy" src="img/screenshot-es-8.jpg"><figcaption><span class="es">Tu carnet de camarero</span><span class="en">Your Bartender ID</span></figcaption></figure>
+        <figure class="shot"><img data-shot="11" alt="" loading="lazy" src="img/screenshot-es-11.jpg"><figcaption><span class="es">Tu carnet, de feria</span><span class="en">Your ID, fairground style</span></figcaption></figure>
       </div>
     </div>
   </section>
@@ -672,9 +579,11 @@
           <p><span class="es">La demo, en el navegador del móvil o del ordenador, sin descargar nada. El juego completo, muy pronto en Android, en Google Play.</span><span class="en">The demo, in the browser on your phone or computer, with nothing to download. The full game, very soon on Android, on Google Play.</span>
             <span class="es">¿La quieres probar antes? <a href="#probar">Apúntate</a>.</span><span class="en">Want to try it first? <a href="#probar">Sign up</a>.</span></p></details>
         <details><summary><span class="es">¿Puedo retar a mis amigos?</span><span class="en">Can I challenge my friends?</span></summary>
-          <p><span class="es">Sí. Al acabar una partida del clásico, al recibir la nota de Don Ramón o al final de la demo, pulsa «Reta a un amigo» y mándale el enlace por donde quieras. Lo abre en el navegador, sin descargar nada. Si te gana, te lo restriega.</span><span class="en">Yes. When a classic game ends, when Don Ramón gives you a score or at the end of the demo, tap "Challenge a friend" and send them the link however you like. They open it in the browser, with nothing to download. If they beat you, they'll rub it in.</span></p></details>
+          <p><span class="es">Sí. Al acabar una partida del clásico, al recibir la nota de Don Ramón o al final de la demo, pulsa «Reta a un amigo» y mándale el enlace por donde quieras. Lo abre en el navegador, sin descargar nada. Si te gana, te lo restriega. Y sin trampas: un reto antiguo no vale si ya hay uno más nuevo.</span><span class="en">Yes. When a classic game ends, when Don Ramón gives you a score or at the end of the demo, tap "Challenge a friend" and send them the link however you like. They open it in the browser, with nothing to download. If they beat you, they'll rub it in. And no cheating: an old challenge doesn't count once there's a newer one.</span></p></details>
         <details><summary><span class="es">¿Qué tiene el juego completo que no tenga la demo?</span><span class="en">What does the full game have that the demo doesn't?</span></summary>
-          <p><span class="es">Las 16 cervezas, la Oktoberfest, el modo realista entero, tu bar hasta el estadio, la tienda y los 56 logros.</span><span class="en">All 16 beers, the Oktoberfest, the whole realistic mode, your bar all the way to the stadium, the shop and all 56 achievements.</span></p></details>
+          <p><span class="es">Las 16 cervezas, la Oktoberfest, el modo realista entero, tu bar hasta el estadio con sus 7 tapas, la tienda y el carnet de camarero con 6 rangos y 56 logros.</span><span class="en">All 16 beers, the Oktoberfest, the whole realistic mode, your bar all the way to the stadium with its 7 tapas, the shop and the Bartender ID with 6 ranks and 56 achievements.</span></p></details>
+        <details><summary><span class="es">¿Se puede jugar en el ordenador?</span><span class="en">Can I play on a computer?</span></summary>
+          <p><span class="es">Sí. En el clásico, mantén pulsado el ratón o la barra <kbd>espacio</kbd>. En el realista, con el ratón, o con <kbd>espacio</kbd> para abrir, <kbd>←</kbd> <kbd>→</kbd> para inclinar, <kbd>E</kbd> para enjuagar, <kbd>C</kbd> para cortar la espuma e <kbd>Intro</kbd> para servir.</span><span class="en">Yes. In classic mode, hold the mouse button or the <kbd>space</kbd> bar. In realistic mode, use the mouse, or <kbd>space</kbd> to pour, <kbd>←</kbd> <kbd>→</kbd> to tilt, <kbd>E</kbd> to rinse, <kbd>C</kbd> to skim and <kbd>Enter</kbd> to serve.</span></p></details>
         <details><summary><span class="es">¿Hay que registrarse?</span><span class="en">Do I need an account?</span></summary>
           <p><span class="es">No. No hay cuentas: tu partida se guarda en tu móvil o en tu navegador.</span><span class="en">No. There are no accounts: your progress is saved on your phone or in your browser.</span></p></details>
         <details><summary><span class="es">¿En qué idiomas está?</span><span class="en">What languages is it in?</span></summary>
