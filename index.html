@@ -242,6 +242,11 @@
   .studio .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .studio p { margin-top: 14px; max-width: 52ch; }
   .studio .contact { color: var(--chalk-dim); } .studio .contact a { font-weight: 700; margin-left: 4px; }
+  .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .social a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1.5px solid rgba(241, 234, 216, .3);
+              color: var(--chalk); text-decoration: none; font-weight: 500; }
+  .social a:hover { border-color: var(--beer); color: var(--beer); }
+  .social svg { width: 20px; height: 20px; flex: none; }
   .studio .big { font: 400 clamp(26px, 3.4vw, 36px)/1.15 var(--display); color: var(--foam); margin-top: 16px; max-width: 24ch; }
   .workshop { display: grid; gap: 18px; list-style: none; padding: 0; margin: 0; }
   .workshop li { position: relative; background: var(--napkin); color: var(--ink); padding: 18px 20px; border-radius: 2px; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); }
@@ -514,6 +519,10 @@
            <span class="en">In Spanish, a "chapuza" is a botched job. Our games are about you botching everyday things: you learn them in a second and it takes forever to get them right.</span></p>
         <p class="contact"><span class="es">¿Ideas, fallos o una caña mal tirada que contarnos?</span><span class="en">Ideas, bugs or a badly poured beer to report?</span>
           <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a></p>
+        <p class="social">
+          <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>Instagram</a>
+          <a href="https://www.tiktok.com/@chapuzagame" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>TikTok</a>
+        </p>
       </div>
       <ul class="workshop" aria-label="Juegos / Games">
         <li class="now"><b>How to Pour Beer</b><span><span class="es">demo en el navegador · el juego completo, pronto en Google Play</span><span class="en">demo in your browser · the full game on Google Play soon</span></span></li>
@@ -531,6 +540,8 @@
     <nav aria-label="Enlaces">
       <a href="how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="pie"><span class="es">Jugar la demo</span><span class="en">Play the demo</span></a>
       <a href="privacy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
+      <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a>
+      <a href="https://www.tiktok.com/@chapuzagame" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a>
       <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a>
     </nav>
     <p class="credits">
