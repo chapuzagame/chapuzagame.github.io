@@ -148,7 +148,7 @@
   <section id="videos">
     <div class="wrap">
       <h2><span class="es">Tráiler y clips</span><span class="en">Trailer and clips</span></h2>
-      <p style="margin-top:10px; color: var(--chalk-dim)"><span class="es">Vertical (1080×1920), con el sonido del propio juego. Descárgalos en MP4.</span><span class="en">Vertical (1080×1920), with the game's own sound. Download them as MP4.</span></p>
+      <p style="margin-top:10px; color: var(--chalk-dim)"><span class="es">Vertical (1080×1920), con el sonido del propio juego. Descárgalos en MP4. Los ES+EN llevan los titulares en los dos idiomas.</span><span class="en">Vertical (1080×1920), with the game's own sound. Download them as MP4. The ES+EN ones have captions in both languages.</span></p>
       <div class="vids">
         <div><video controls playsinline preload="none" data-src="video/trailer-{l}.mp4" data-poster="../video/trailer-{l}.jpg" poster="../video/trailer-es.jpg" src="video/trailer-es.mp4"></video>
           <p><b><span class="es">Tráiler</span><span class="en">Trailer</span></b> · 30 s</p>
@@ -187,15 +187,17 @@
 
 <script>
   // las listas se rellenan aquí: clips y capturas, en el idioma elegido
-  const CLIPS = [['fallo-y-perfecta', 'El fallo y la perfecta', 'The fail and the perfect one'], ['don-ramon', 'La nota de Don Ramón', "Don Ramón's score"],
-                 ['oktoberfest', 'La Oktoberfest y tu bar', 'Oktoberfest and your bar']];
+  // [id, título, title, captura de la miniatura, también con titulares en los dos idiomas]
+  const CLIPS = [['fallo-y-perfecta', 'El fallo y la perfecta', 'The fail and the perfect one', 2], ['don-ramon', 'La nota de Don Ramón', "Don Ramón's score", 6],
+                 ['oktoberfest', 'La Oktoberfest y tu bar', 'Oktoberfest and your bar', 3], ['cuando', '¿Cuándo soltarías tú?', 'When would you let go?', 2, true],
+                 ['cervezas', '16 cervezas, cada una en su vaso', '16 beers, each in its own glass', 7, true], ['desastres', 'Cómo NO tirar una caña', 'How NOT to pour a beer', 5, true],
+                 ['estilos', 'Tu bar, a tu manera', 'Your bar, your way', 9, true]];
   const SHOTS = 11, PLAY = 8, root = document.documentElement;
   function fill(l) {
-    document.getElementById('clips').innerHTML = CLIPS.map(([id, es, en]) =>
-      `<figure><a href="video/clip-${id}-${l}.mp4" download><img src="../img/screenshot-${l}-2.jpg" alt="" loading="lazy" data-clip="${id}"></a>` +
-      `<figcaption>${l === 'es' ? es : en} · <a href="video/clip-${id}-es.mp4" download>ES</a> · <a href="video/clip-${id}-en.mp4" download>EN</a></figcaption></figure>`).join('');
-    const pics = { 'fallo-y-perfecta': 2, 'don-ramon': 6, 'oktoberfest': 3 };
-    for (const img of document.querySelectorAll('img[data-clip]')) img.src = `../img/screenshot-${l}-${pics[img.dataset.clip] || 2}.jpg`;
+    document.getElementById('clips').innerHTML = CLIPS.map(([id, es, en, pic, bi]) =>
+      `<figure><a href="video/clip-${id}-${l}.mp4" download><img src="../img/screenshot-${l}-${pic}.jpg" alt="" loading="lazy"></a>` +
+      `<figcaption>${l === 'es' ? es : en} · <a href="video/clip-${id}-es.mp4" download>ES</a> · <a href="video/clip-${id}-en.mp4" download>EN</a>` +
+      (bi ? ` · <a href="video/clip-${id}-bi.mp4" download>ES+EN</a>` : '') + `</figcaption></figure>`).join('');
     document.getElementById('shots').innerHTML = Array.from({ length: SHOTS }, (_, i) =>
       `<figure><a href="img/screenshot-${l}-${i + 1}.jpg" target="_blank"><img src="../img/screenshot-${l}-${i + 1}.jpg" alt="" loading="lazy"></a></figure>`).join('');
     document.getElementById('playshots').innerHTML = Array.from({ length: PLAY }, (_, i) =>
