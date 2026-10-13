@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.chapuzagame.howtopourbeer",
+      "sha256_cert_fingerprints": ["EE:28:A2:66:E9:71:55:BB:57:E9:E1:BF:F3:59:43:3F:F2:98:54:41:0A:63:E3:52:37:3B:EB:C0:E4:25:73:46"]
+    }
+  }
+]
