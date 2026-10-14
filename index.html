@@ -24,6 +24,24 @@
 <link rel="icon" href="img/chapuza-icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="img/chapuza-icon-180.png">
 <!-- estadísticas de visitas sin cookies (Umami): solo cuenta en chapuzagame.github.io -->
+<script>
+  // ?soyyo: este navegador deja de contar en las estadísticas (en toda la web, demo incluida; Umami mira umami.disabled).
+  // ?noyo lo deshace. Para que las visitas del estudio no se mezclen con las de la gente.
+  (function () {
+    var yo = /[?&]soyyo\b/.test(location.search), no = /[?&]noyo\b/.test(location.search);
+    if (!yo && !no) return;
+    try { if (yo) localStorage.setItem('umami.disabled', '1'); else localStorage.removeItem('umami.disabled'); } catch (e) { return; }
+    history.replaceState(null, '', location.pathname + location.hash);
+    addEventListener('DOMContentLoaded', function () {
+      var a = document.createElement('div');
+      a.textContent = yo ? 'Listo: tus visitas desde este navegador ya no cuentan en las estadísticas.' : 'Listo: tus visitas vuelven a contar.';
+      a.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99;max-width:90vw;padding:12px 18px;' +
+        'border-radius:14px;background:#ffb300;color:#1a0d05;font:600 15px/1.4 system-ui,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.35)';
+      document.body.appendChild(a);
+      setTimeout(function () { a.remove(); }, 5000);
+    });
+  })();
+</script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="ab1eeda4-0cb4-4b62-a4dc-d466823fd7ff" data-domains="chapuzagame.github.io"></script>
 <style>
   /* Una barra de bar: pared granate arriba, la pizarra de las tapas, servilletas pegadas con cinta,
