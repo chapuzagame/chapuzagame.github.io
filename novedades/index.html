@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Novedades de How to Pour Beer · Chapuza Game</title>
+<meta name="description" content="Lo nuevo de How to Pour Beer, versión a versión: lo que cambia en el juego, en la beta y en la demo.">
+<meta name="theme-color" content="#1b130f">
+<link rel="canonical" href="https://chapuzagame.github.io/novedades/">
+<!-- la vista previa al compartir el enlace (WhatsApp, redes...) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chapuza Game">
+<meta property="og:url" content="https://chapuzagame.github.io/novedades/">
+<meta property="og:title" content="Novedades de How to Pour Beer">
+<meta property="og:description" content="Lo que cambia en el juego, versión a versión.">
+<meta property="og:image" content="https://chapuzagame.github.io/img/og-image.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../img/chapuza-favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/chapuza-icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../img/chapuza-icon-180.png">
+<!-- estadísticas de visitas sin cookies (Umami): solo cuenta en chapuzagame.github.io -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="ab1eeda4-0cb4-4b62-a4dc-d466823fd7ff" data-domains="chapuzagame.github.io"></script>
+<style>
+  /* Novedades: lo que cambia, de lo más nuevo a lo más antiguo (la lista sale de site/novedades.json) */
+  :root {
+    --wall-deep: #22100b; --board: #1f2a24; --chalk: #f1ead8; --chalk-dim: #b8b09b;
+    --beer: #ffb300; --beer-deep: #e0860c; --ink: #2a160b;
+    --display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
+    --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: dark;
+  }
+  @font-face { font-family: "Lilita One"; font-display: swap; src: url(../fonts/lilita-one-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Rubik"; font-weight: 400; font-display: swap; src: url(../fonts/rubik-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Rubik"; font-weight: 700; font-display: swap; src: url(../fonts/rubik-latin-700-normal.woff2) format("woff2"); }
+  * { box-sizing: border-box; }
+  html { background: var(--wall-deep); }
+  body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse 140% 520px at 50% 0, #4a1c12, transparent) no-repeat;
+         color: var(--chalk); font: 400 17px/1.55 var(--body); -webkit-text-size-adjust: 100%; }
+  a { color: var(--beer); }
+  :focus-visible { outline: 3px solid var(--beer); outline-offset: 3px; border-radius: 8px; }
+  [data-lang="es"] .en, [data-lang="en"] .es { display: none !important; }
+  main { max-width: 560px; margin: 0 auto; padding: 28px 16px 40px; }
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .top a.home { color: var(--chalk-dim); text-decoration: none; font-weight: 700; }
+  .lang { display: flex; gap: 2px; padding: 3px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, .5); background: rgba(0, 0, 0, .3); }
+  .lang button { border: 0; border-radius: 999px; padding: 4px 12px; background: none; color: var(--chalk); font: 15px var(--display); cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--beer); color: #1a0d05; }
+  h1 { font: 34px/1.1 var(--display); margin: 26px 0 8px; color: var(--beer); text-shadow: 0 3px 0 rgba(0, 0, 0, .35); }
+  .lead { margin: 0 0 22px; color: var(--chalk); }
+  footer { margin-top: 28px; font-size: 14px; color: var(--chalk-dim); text-align: center; }
+  .log { display: grid; gap: 14px; }
+  .log article { background: var(--board); border: 2px solid rgba(241, 234, 216, .18); border-radius: 18px; padding: 14px 16px 16px; }
+  .log article:first-child { border-color: var(--beer); }
+  .log .when { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--chalk-dim); font-size: 14px; font-weight: 700; }
+  .log .when b { padding: 2px 10px; border-radius: 999px; background: var(--beer); color: #1a0d05; font: 14px var(--display); font-weight: 400; }
+  .log h2 { margin: 6px 0 0; font: 22px/1.2 var(--display); color: var(--chalk); }
+  .log ul { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 6px; }
+  .log li::marker { color: var(--beer); }
+
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <a class="home" href="../">← Chapuza Game</a>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-l="es" aria-pressed="true">ES</button><button type="button" data-l="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+
+  <h1><span class="es">Novedades</span><span class="en">What's new</span></h1>
+  <p class="lead"><span class="es">Lo que cambia en How to Pour Beer, de lo más nuevo a lo más antiguo. ¿Una idea? <a href="mailto:chapuzagame@gmail.com">Escríbenos</a>: alguna ya está en el juego.</span>
+    <span class="en">What changes in How to Pour Beer, newest first. Got an idea? <a href="mailto:chapuzagame@gmail.com">Write to us</a>: some are already in the game.</span></p>
+
+  <div class="log">
+    <article>
+      <p class="when"><span class="es">15 de octubre de 2026</span><span class="en">15 October 2026</span> <b>1.0.86</b></p>
+      <h2><span class="es">Mi bar, en pesetas</span><span class="en">My bar, in pesetas</span></h2>
+      <ul class="es"><li>Mi bar ahora cobra en pesetas: Don Ramón nunca se pasó al euro. Idea de Mikel.</li><li>Agradecimientos en Tu ficha, para la gente que ha hecho esto posible.</li></ul>
+      <ul class="en"><li>My bar now charges in pesetas, Spain's money before the euro: Don Ramón never switched. Mikel's idea.</li><li>A Thanks section in your profile, for the people who made this happen.</li></ul>
+    </article>
+    <article>
+      <p class="when"><span class="es">13 de octubre de 2026</span><span class="en">13 October 2026</span> <b>1.0.64</b></p>
+      <h2><span class="es">La beta, en Google Play</span><span class="en">The beta, on Google Play</span></h2>
+      <ul class="es"><li>Primera beta para Android: apúntate en <a href="../beta/">chapuzagame.github.io/beta</a>.</li><li>Aviso cuando hay una versión nueva y botón de Contacto para mandarnos ideas o fallos.</li><li>Los enlaces de «Reta a un amigo» abren la app si la tienes.</li><li>Tienda más clara (qué es cada cosa, trajes, restaurar compras) y compras más fiables.</li></ul>
+      <ul class="en"><li>First Android beta: sign up at <a href="../beta/">chapuzagame.github.io/beta</a>.</li><li>A heads-up when there's a new version, and a Contact button to send us ideas or bugs.</li><li>"Challenge a friend" links open the app if you have it.</li><li>A clearer shop (what everything is, outfits, restoring purchases) and more reliable purchases.</li></ul>
+    </article>
+    <article>
+      <p class="when"><span class="es">12 de octubre de 2026</span><span class="en">12 October 2026</span></p>
+      <h2><span class="es">Reta a un amigo</span><span class="en">Challenge a friend</span></h2>
+      <ul class="es"><li>Comparte tu mejor caña y reta a quien quieras. Si te gana, revancha; si ganas tú, a restregárselo.</li><li>Tráiler y kit de prensa.</li></ul>
+      <ul class="en"><li>Share your best pour and challenge anyone. If they beat you, rematch; if you win, rub it in.</li><li>Trailer and press kit.</li></ul>
+    </article>
+    <article>
+      <p class="when"><span class="es">11 de octubre de 2026</span><span class="en">11 October 2026</span></p>
+      <h2><span class="es">La demo, en el navegador</span><span class="en">The demo, in your browser</span></h2>
+      <ul class="es"><li>La demo gratis en el navegador, del móvil o del ordenador.</li><li>Estilos para Mi bar (chiringuito, taberna irlandesa y Bierhalle) y cinco carnets nuevos.</li><li>Vasos y trajes nuevos, y paquetes de aspecto.</li></ul>
+      <ul class="en"><li>The free demo in your browser, on your phone or computer.</li><li>Styles for My bar (beach bar, Irish pub and Bierhalle) and five new cards.</li><li>New glasses and outfits, and look bundles.</li></ul>
+    </article>
+  </div>
+
+  <footer><span class="es">How to Pour Beer · Chapuza Game · <a href="../beta/">Beta</a> · <a href="../privacy.html">Privacidad</a></span>
+    <span class="en">How to Pour Beer · Chapuza Game · <a href="../beta/">Beta</a> · <a href="../privacy.html">Privacy</a></span></footer>
+</main>
+<script>
+  // el idioma: el del navegador (o el que elijas), igual que en la portada
+  (function () {
+    var KEY = 'cg_lang', saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    function setLang(l) {
+      document.documentElement.dataset.lang = l; document.documentElement.lang = l;
+      document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === l)); });
+    }
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.dataset.l); try { localStorage.setItem(KEY, b.dataset.l); } catch (e) {} });
+    });
+    setLang(saved === 'es' || saved === 'en' ? saved : (/^es\b/i.test(navigator.language || '') ? 'es' : 'en'));
+  })();
+</script>
+</body>
+</html>
