@@ -54,6 +54,8 @@
   li h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font: 22px/1.2 var(--display); }
   li h2 b { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--beer); color: #1a0d05; font-weight: 400; }
   li p { margin: 0 0 12px; color: var(--chalk-dim); font-size: 15px; }
+  li p.hint { margin: 12px 0 0; font-size: 14px; }
+  li p.hint b { color: var(--chalk); }
   .btn { display: flex; justify-content: center; align-items: center; min-height: 52px; padding: 10px 18px; border-radius: 999px;
          background: var(--beer); color: #1a0d05; font: 20px var(--display); text-decoration: none; text-align: center;
          box-shadow: 0 4px 0 var(--beer-deep); }
@@ -97,6 +99,8 @@
       <p><span class="es">Y a tirar cañas. 🍺</span><span class="en">And start pouring. 🍺</span></p>
       <a class="btn" href="https://play.google.com/store/apps/details?id=com.chapuzagame.howtopourbeer" target="_blank" rel="noopener" data-umami-event="beta-paso" data-umami-event-paso="instalar">
         <span class="es">Abrir en Google Play</span><span class="en">Open in Google Play</span></a>
+      <p class="hint"><span class="es">¿Te sale <b>«Elemento no encontrado»</b>? En Play Store toca tu foto (arriba a la derecha) y comprueba que estás con la <b>misma cuenta</b> con la que hiciste los pasos 1 y 2. Si acabas de hacerlos, espera unos minutos.</span>
+        <span class="en">Getting <b>"Item not found"</b>? In the Play Store, tap your picture (top right) and check you're on the <b>same account</b> you used for steps 1 and 2. If you've just done them, give it a few minutes.</span></p>
     </li>
   </ol>
 
