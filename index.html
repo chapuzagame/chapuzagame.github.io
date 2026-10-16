@@ -328,7 +328,7 @@
   .studio .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .studio p { margin-top: 14px; max-width: 52ch; }
   .studio .contact { color: var(--chalk-dim); } .studio .contact a { font-weight: 700; margin-left: 4px; }
-  .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .social { display: grid; grid-template-columns: repeat(2, max-content); gap: 10px; margin-top: 18px; }
   .social a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1.5px solid rgba(241, 234, 216, .3);
               color: var(--chalk); text-decoration: none; font-weight: 500; }
   .social a:hover { border-color: var(--beer); color: var(--beer); }
@@ -386,6 +386,7 @@
     </a>
     <div class="soc" role="group" aria-label="Redes / Social">
       <a href="https://www.instagram.com/chapuzagame/" aria-label="Instagram" title="Instagram" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/1365641213305515" aria-label="Facebook" title="Facebook" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.6 21V10.2c0-1.6.9-2.6 2.5-2.6h1.4M8.8 13h5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
       <a href="https://www.tiktok.com/@chapuza.game" aria-label="TikTok" title="TikTok" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
       <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" aria-label="YouTube" title="YouTube" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg></a>
     </div>
@@ -415,6 +416,7 @@
     </a>
     <p class="follow"><span class="es">Síguenos</span><span class="en">Follow us</span>
       <a href="https://www.instagram.com/chapuzagame/" aria-label="Instagram" title="Instagram" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/1365641213305515" aria-label="Facebook" title="Facebook" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.6 21V10.2c0-1.6.9-2.6 2.5-2.6h1.4M8.8 13h5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
       <a href="https://www.tiktok.com/@chapuza.game" aria-label="TikTok" title="TikTok" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
       <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" aria-label="YouTube" title="YouTube" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg></a></p>
   </nav>
@@ -436,8 +438,8 @@
         </h1>
         <p class="tagline"><span class="es">Tirar una caña parece fácil. No lo es.</span><span class="en">Pouring a beer looks easy. It isn't.</span></p>
         <p class="lede">
-          <span class="es">Un juego de bar con tres maneras de jugar: reflejos en el modo clásico, oficio en el realista y tu propio bar, de la barra de pie al estadio. Se aprende en un segundo; clavarla es otra historia.</span>
-          <span class="en">A bar game with three ways to play: reflexes in classic mode, craft in realistic mode and your very own bar, from a standing counter to a stadium. You learn it in a second; nailing it is another story.</span>
+          <span class="es">Un juego de bar con tres maneras de jugar: reflejos en el modo clásico, oficio en el realista y tu propio bar, de la barra de pie a tu propia fábrica de cerveza. Se aprende en un segundo; clavarla es otra historia.</span>
+          <span class="en">A bar game with three ways to play: reflexes in classic mode, craft in realistic mode and your very own bar, from a standing counter to your own brewery. You learn it in a second; nailing it is another story.</span>
         </p>
         <div class="cta">
           <a class="btn beer" href="how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="portada">
@@ -502,9 +504,9 @@
             <ol class="steps">
               <li><b><span class="es">Sirve tú:</span><span class="en">Pour yourself:</span></b> <span class="es">cada caña buena sube el ambiente.</span><span class="en">every good beer lifts the vibe.</span></li>
               <li><b><span class="es">Mejora mesas, grifos y camareros</span><span class="en">Upgrade tables, taps and waiters</span></b> <span class="es">y amplía el local cuando se llene.</span><span class="en">and expand the place when it fills up.</span></li>
-              <li><b><span class="es">Tapas y encargos</span><span class="en">Tapas and jobs</span></b> <span class="es">de los clientes de siempre.</span><span class="en">from the regulars.</span></li>
+              <li><b><span class="es">Inventa tu cerveza</span><span class="en">Brew your own beer</span></b> <span class="es">y que los clientes la pidan.</span><span class="en">and get the regulars ordering it.</span></li>
             </ol>
-            <p class="mfoot"><span class="es">De la barra de pie al estadio.</span><span class="en">From a standing counter to a stadium.</span></p>
+            <p class="mfoot"><span class="es">De la barra de pie a la Oktoberfest, y luego tu fábrica.</span><span class="en">From a standing counter to the Oktoberfest, then your brewery.</span></p>
           </div>
         </article>
       </div>
@@ -590,7 +592,7 @@
              poster="video/trailer-es.jpg" data-umami-event="ver-trailer"></video>
     </div>
     <div class="wrap gallery">
-      <h3><span class="es">Del primer culín al estadio</span><span class="en">From the first drop to the stadium</span></h3>
+      <h3><span class="es">Del primer culín a la Oktoberfest</span><span class="en">From the first drop to the Oktoberfest</span></h3>
       <div class="shots" tabindex="0" aria-label="Capturas / Screenshots">
         <figure class="shot"><img data-shot="1" alt="" loading="lazy" src="img/screenshot-es-1.jpg"><figcaption><span class="es">El menú: clásico, realista, Mi bar y tienda</span><span class="en">The menu: classic, realistic, My bar and shop</span></figcaption></figure>
         <figure class="shot"><img data-shot="3" alt="" loading="lazy" src="img/screenshot-es-3.jpg"><figcaption><span class="es">La carpa de la Oktoberfest</span><span class="en">The Oktoberfest tent</span></figcaption></figure>
@@ -614,6 +616,7 @@
         <a class="btn en" href="beta/" data-umami-event="tester">Count me in</a>
         <p class="small"><span class="es">¿Sin Android? Síguenos y te avisamos cuando salga:</span><span class="en">No Android? Follow us and we'll let you know when it's out:</span>
           <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a> ·
+          <a href="https://www.facebook.com/1365641213305515" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook">Facebook</a> ·
           <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a> ·
           <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube">YouTube</a></p>
       </div>
@@ -632,7 +635,7 @@
         <details><summary><span class="es">¿Puedo retar a mis amigos?</span><span class="en">Can I challenge my friends?</span></summary>
           <p><span class="es">Sí. Al acabar una partida del clásico, al recibir la nota de Don Ramón o al final de la demo, pulsa «Reta a un amigo» y mándale el enlace por donde quieras. Lo abre en el navegador, sin descargar nada. Si te gana, te lo restriega. Y sin trampas: un reto antiguo no vale si ya hay uno más nuevo.</span><span class="en">Yes. When a classic game ends, when Don Ramón gives you a score or at the end of the demo, tap "Challenge a friend" and send them the link however you like. They open it in the browser, with nothing to download. If they beat you, they'll rub it in. And no cheating: an old challenge doesn't count once there's a newer one.</span></p></details>
         <details><summary><span class="es">¿Qué tiene el juego completo que no tenga la demo?</span><span class="en">What does the full game have that the demo doesn't?</span></summary>
-          <p><span class="es">Las 16 cervezas, la Oktoberfest, el modo realista entero, tu bar hasta el estadio con sus 7 tapas, la tienda y el carnet de camarero con 6 rangos y 56 logros.</span><span class="en">All 16 beers, the Oktoberfest, the whole realistic mode, your bar all the way to the stadium with its 7 tapas, the shop and the Bartender ID with 6 ranks and 56 achievements.</span></p></details>
+          <p><span class="es">Las 16 cervezas, la Oktoberfest, el modo realista entero, tu bar hasta la carpa de la Oktoberfest con sus 10 tapas, tu propia fábrica de cerveza, la tienda y el carnet de camarero con 6 rangos y 57 logros.</span><span class="en">All 16 beers, the Oktoberfest, the whole realistic mode, your bar all the way to the stadium with its 7 tapas, the shop and the Bartender ID with 6 ranks and 56 achievements.</span></p></details>
         <details><summary><span class="es">¿Se puede jugar en el ordenador?</span><span class="en">Can I play on a computer?</span></summary>
           <p><span class="es">Sí. En el clásico, mantén pulsado el ratón o la barra <kbd>espacio</kbd>. En el realista, con el ratón, o con <kbd>espacio</kbd> para abrir, <kbd>←</kbd> <kbd>→</kbd> para inclinar, <kbd>E</kbd> para enjuagar, <kbd>C</kbd> para cortar la espuma e <kbd>Intro</kbd> para servir.</span><span class="en">Yes. In classic mode, hold the mouse button or the <kbd>space</kbd> bar. In realistic mode, use the mouse, or <kbd>space</kbd> to pour, <kbd>←</kbd> <kbd>→</kbd> to tilt, <kbd>E</kbd> to rinse, <kbd>C</kbd> to skim and <kbd>Enter</kbd> to serve.</span></p></details>
         <details><summary><span class="es">¿Hay que registrarse?</span><span class="en">Do I need an account?</span></summary>
@@ -663,6 +666,7 @@
           <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a></p>
         <p class="social">
           <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>Instagram</a>
+          <a href="https://www.facebook.com/1365641213305515" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.6 21V10.2c0-1.6.9-2.6 2.5-2.6h1.4M8.8 13h5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Facebook</a>
           <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>TikTok</a>
           <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg>YouTube</a>
         </p>
@@ -682,7 +686,7 @@
         <li><b>Julia</b><span class="es">Mi madre. Por creer en mí mucho antes de la primera caña. Esta va por ti.</span><span class="en">My mum. For believing in me long before the first beer. This one's for you.</span></li>
         <li><b>Mikel</b><span class="es">Mi colega, un risas. Por la idea de las pesetas y por calentarme hasta que tiré para adelante con el proyecto. La próxima ronda la pago yo… en pesetas.</span><span class="en">My mate, always a laugh. For the pesetas idea and for egging me on until I went for it with this project. Next round's on me… in pesetas.</span></li>
         <li><b>Jorge</b><span class="es">Mi hermano. Por el modo realista, ese que yo le decía que era imposible. Pues aquí está.</span><span class="en">My brother. For realistic mode, the one I kept saying was impossible. Well, here it is.</span></li>
-        <li><b>Javier G.</b><span class="es">Por las ideas para Mi bar: más cosas que comprar y nada de quedarse esperando.</span><span class="en">For the ideas for My bar: more things to buy and no more sitting around waiting.</span></li>
+        <li><b>Javier G.</b><span class="es">Por las ideas para Mi bar: más cosas que comprar, nada de quedarse esperando y darle una historia, la de Don Ramón.</span><span class="en">For the ideas for My bar: more things to buy, no more sitting around waiting, and giving it a story: Don Ramón's.</span></li>
       </ul>
       <p class="all"><span class="es">Y a todos los testers de la beta, por jugar, apoyar y dar su opinión.</span><span class="en">And to all the beta testers, for playing, cheering us on and telling us what they think.</span></p>
       <p class="sorry"><span class="es">Perdonad si nos hemos olvidado de alguien: avisadnos y os ponemos.</span><span class="en">Sorry if we've left anyone out: let us know and we'll add you.</span></p>
@@ -702,6 +706,7 @@
       <a href="prensa/"><span class="es">Prensa</span><span class="en">Press kit</span></a>
       <a href="privacy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
       <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a>
+      <a href="https://www.facebook.com/1365641213305515" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook">Facebook</a>
       <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a>
       <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube">YouTube</a>
       <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a>
