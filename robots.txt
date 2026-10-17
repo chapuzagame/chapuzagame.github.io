@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chapuzagame.github.io/sitemap.xml

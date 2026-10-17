@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to Pour Beer · The beer pouring game · Chapuza Game</title>
+<meta name="description" content="Pouring a beer looks easy. It isn't. A bar game with three modes: classic, realistic and your own bar. Play the free demo in your browser, no download or sign-up.">
+<meta name="theme-color" content="#1b130f">
+<link rel="canonical" href="https://chapuzagame.github.io/en/">
+<!-- cada idioma en su dirección (la portada, en español; /en/, en inglés: la monta scripts/build-site.mjs), para que los
+     buscadores enseñen cada una a quien la busca en su idioma -->
+<link rel="alternate" hreflang="es" href="https://chapuzagame.github.io/">
+<link rel="alternate" hreflang="en" href="https://chapuzagame.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://chapuzagame.github.io/en/">
+<!-- la vista previa al compartir el enlace (WhatsApp, redes...): las direcciones, completas, o no sale la imagen -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chapuza Game">
+<meta property="og:url" content="https://chapuzagame.github.io/en/">
+<meta property="og:title" content="How to Pour Beer · The beer pouring game">
+<meta property="og:description" content="Pouring a beer looks easy. It isn't. Play the free demo in your browser: classic mode, realistic mode and your own bar.">
+<meta property="og:image" content="https://chapuzagame.github.io/img/og-image.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta property="og:image:alt" content="How to Pour Beer: the title and a beer with a head of foam">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://chapuzagame.github.io/#web","url":"https://chapuzagame.github.io/","name":"Chapuza Game","inLanguage":["es","en"],"publisher":{"@id":"https://chapuzagame.github.io/#estudio"}},{"@type":"Organization","@id":"https://chapuzagame.github.io/#estudio","name":"Chapuza Game","url":"https://chapuzagame.github.io/","email":"chapuzagame@gmail.com","logo":{"@type":"ImageObject","url":"https://chapuzagame.github.io/prensa/img/chapuza-game-logo.png","width":405,"height":434},"sameAs":["https://www.instagram.com/chapuzagame/","https://www.facebook.com/1365641213305515","https://www.tiktok.com/@chapuza.game","https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA"]},{"@type":"VideoGame","@id":"https://chapuzagame.github.io/#how-to-pour-beer","name":"How to Pour Beer","url":"https://chapuzagame.github.io/en/","description":"Pouring a beer looks easy. It isn't. A bar game with three modes: classic, realistic and your own bar, from a standing counter to your own brewery.","image":"https://chapuzagame.github.io/img/og-image.jpg","screenshot":["https://chapuzagame.github.io/img/screenshot-en-1.jpg","https://chapuzagame.github.io/img/screenshot-en-5.jpg","https://chapuzagame.github.io/img/screenshot-en-9.jpg"],"genre":["Casual","Simulation","Skill"],"playMode":"SinglePlayer","gamePlatform":["Web browser","Android"],"applicationCategory":"GameApplication","operatingSystem":"Android, Web","inLanguage":["es","en"],"author":{"@id":"https://chapuzagame.github.io/#estudio"},"publisher":{"@id":"https://chapuzagame.github.io/#estudio"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","url":"https://chapuzagame.github.io/how-to-pour-beer/"}}]}</script>
+<link rel="icon" href="../img/chapuza-favicon.ico" sizes="48x48">
+<link rel="icon" href="../img/chapuza-icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../img/chapuza-icon-180.png">
+<!-- estadísticas de visitas sin cookies (Umami): solo cuenta en chapuzagame.github.io -->
+<script>
+  // ?soyyo: este navegador deja de contar en las estadísticas (en toda la web, demo incluida; Umami mira umami.disabled).
+  // ?noyo lo deshace. Para que las visitas del estudio no se mezclen con las de la gente.
+  (function () {
+    var yo = /[?&]soyyo\b/.test(location.search), no = /[?&]noyo\b/.test(location.search);
+    if (!yo && !no) return;
+    try { if (yo) localStorage.setItem('umami.disabled', '1'); else localStorage.removeItem('umami.disabled'); } catch (e) { return; }
+    history.replaceState(null, '', location.pathname + location.hash);
+    addEventListener('DOMContentLoaded', function () {
+      var a = document.createElement('div');
+      a.textContent = yo ? 'Listo: tus visitas desde este navegador ya no cuentan en las estadísticas.' : 'Listo: tus visitas vuelven a contar.';
+      a.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99;max-width:90vw;padding:12px 18px;' +
+        'border-radius:14px;background:#ffb300;color:#1a0d05;font:600 15px/1.4 system-ui,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.35)';
+      document.body.appendChild(a);
+      setTimeout(function () { a.remove(); }, 5000);
+    });
+  })();
+</script>
+<script src="../origen.js"></script>
+<script>
+  // el idioma va en la dirección: la portada, en español, y /en/, en inglés. La primera vez, el del navegador; luego, el
+  // que elijas (cg_lang). A los buscadores no se les cambia: ven la página que piden (va después de origen.js, que ya ha
+  // apuntado de dónde llega la visita).
+  (function () {
+    var page = document.documentElement.lang, saved = null;
+    try { saved = localStorage.getItem('cg_lang'); } catch (e) {}
+    var bot = /bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(navigator.userAgent);
+    var want = saved === 'es' || saved === 'en' ? saved : bot ? page : /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
+    if (want !== page) location.replace((want === 'en' ? '/en/' : '/') + location.search + location.hash);
+  })();
+</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="ab1eeda4-0cb4-4b62-a4dc-d466823fd7ff" data-domains="chapuzagame.github.io"></script>
+<style>
+  /* Una barra de bar: pared granate arriba, la pizarra de las tapas, servilletas pegadas con cinta,
+     los medallones de los grifos sobre la madera y los azulejos abajo. Una sola ambientación, de noche. */
+  :root {
+    --wall: #4a1c12;        /* pared granate */
+    --wall-deep: #22100b;
+    --board: #1f2a24;       /* pizarra */
+    --chalk: #f1ead8;       /* tiza */
+    --chalk-dim: #b8b09b;
+    --beer: #ffb300;
+    --beer-deep: #e0860c;
+    --foam: #fff8e7;
+    --napkin: #f6f1e4;
+    --ink: #2a160b;
+    --wood: #6e3c1c;
+    --wood-deep: #3a1d0d;
+    --tile: #e9dfc6;
+    --tile-blue: #2d5d93;
+    --tile-ochre: #c9862e;
+    --red: #c0392b;
+    --display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
+    --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --hand: "Permanent Marker", "Comic Sans MS", cursive;
+    --gutter: clamp(16px, 4vw, 40px);
+    color-scheme: dark;
+  }
+  @font-face { font-family: "Lilita One"; font-display: swap; src: url(../fonts/lilita-one-latin-400-normal.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+2000-206F, U+20AC; }
+  @font-face { font-family: "Lilita One"; font-display: swap; src: url(../fonts/lilita-one-latin-ext-400-normal.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+1E00-1EFF; }
+  @font-face { font-family: "Rubik"; font-weight: 400; font-display: swap; src: url(../fonts/rubik-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC; }
+  @font-face { font-family: "Rubik"; font-weight: 500; font-display: swap; src: url(../fonts/rubik-latin-500-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC; }
+  @font-face { font-family: "Rubik"; font-weight: 700; font-display: swap; src: url(../fonts/rubik-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC; }
+  @font-face { font-family: "Rubik"; font-weight: 400; font-display: swap; src: url(../fonts/rubik-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+1E00-1EFF; }
+  @font-face { font-family: "Rubik"; font-weight: 700; font-display: swap; src: url(../fonts/rubik-latin-ext-700-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+1E00-1EFF; }
+  @font-face { font-family: "Permanent Marker"; font-display: swap; src: url(../fonts/permanent-marker-latin-400-normal.woff2) format("woff2"); }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--wall-deep); color: var(--chalk); font: 400 17px/1.6 var(--body); overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--beer); }
+  :focus-visible { outline: 3px solid var(--beer); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: var(--gutter); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; text-wrap: balance; margin: 0; letter-spacing: .01em; }
+  h2 { font-size: clamp(32px, 5vw, 52px); }
+  p { margin: 0; }
+  .eyebrow { font: 700 13px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--beer); }
+  [data-lang="es"] .en, [data-lang="en"] .es { display: none !important; }
+
+  /* ---------- cabecera ---------- */
+  .top { position: sticky; top: 0; z-index: 10; background: #1b130f; box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+         border-bottom: 1px solid rgba(241, 234, 216, .08); padding-top: env(safe-area-inset-top, 0px); }
+  .top .wrap { display: flex; align-items: center; gap: 20px; min-height: 64px; max-width: 1320px; }
+  .top .wrap > nav, .top .lang, .top .play, .burger { flex: none; }
+  .logo { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-right: auto; flex: none; }
+  .logo img { display: block; height: 44px; width: auto; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .5)); }
+  .logo .mark { height: 40px; }
+  .studio-logo { display: block; width: min(100%, 300px); height: auto; margin-top: 14px; filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .5)); }
+  .foot-logo { display: block; width: 120px; height: auto; }
+  .top .wrap > nav { display: flex; gap: 18px; }
+  .top .wrap > nav a { color: var(--chalk-dim); text-decoration: none; font-weight: 500; font-size: 15px; }
+  .top .wrap > nav a:hover { color: var(--chalk); }
+  /* la sección en la que estás, marcada (en la barra y en el menú del móvil) */
+  .top .wrap > nav a { position: relative; }
+  .top .wrap > nav a.on { color: var(--beer); }
+  .top .wrap > nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 3px; border-radius: 2px; background: var(--beer); }
+  .menu-panel li a.on { color: var(--beer); }
+  .lang { display: flex; padding: 3px; gap: 2px; border-radius: 999px; border: 1.5px solid rgba(241, 234, 216, .3); }
+  .lang button { border: 0; background: none; color: var(--chalk); font: 400 14px/1 var(--display); padding: 6px 10px; border-radius: 999px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--beer); color: var(--ink); }
+  .top .wrap > nav a { white-space: nowrap; }
+  @media (max-width: 1149px) { .top .wrap > nav { display: none; } }
+  /* el botón de jugar de la cabecera: sale cuando ya no se ve el de la portada (en el móvil, en lugar del nombre del logo) */
+  .top .play { padding: 9px 16px; gap: 6px; font-size: 16px; white-space: nowrap; box-shadow: 0 3px 0 var(--beer-deep), 0 6px 16px rgba(255, 179, 0, .2); }
+  .top .play svg { width: 15px; height: 15px; }
+  .io .top .play { display: none; }
+  .io.past-hero .top .play { display: inline-flex; animation: pop .25s ease-out; }
+  @keyframes pop { from { opacity: 0; transform: translateY(-6px); } }
+  @media (max-width: 560px) { .past-hero .logo img:not(.mark) { display: none; } }
+  /* al saltar a una sección, que la cabecera fija no tape el título */
+  section[id] { scroll-margin-top: 72px; }
+  /* el menú del móvil: el botón de las tres rayas y la lista que se despliega bajo la cabecera */
+  .burger { display: none; width: 44px; height: 44px; flex: none; border: 1.5px solid rgba(241, 234, 216, .3); border-radius: 12px; background: none;
+            color: var(--chalk); cursor: pointer; padding: 0; place-content: center; }
+  .burger svg { width: 22px; height: 22px; display: block; }
+  .burger .x, .burger[aria-expanded="true"] .bars { display: none; }
+  .burger[aria-expanded="true"] .x { display: block; }
+  .burger[aria-expanded="true"] { border-color: var(--beer); color: var(--beer); }
+  .menu-panel { position: absolute; left: 0; right: 0; top: 100%; max-height: calc(100vh - 64px); max-height: calc(100dvh - 64px); overflow-y: auto;
+                background: #1b130f; border-bottom: 1px solid rgba(241, 234, 216, .12); box-shadow: 0 24px 40px rgba(0, 0, 0, .5);
+                padding: 8px var(--gutter) 24px; animation: drop .2s ease-out; }
+  .menu-panel[hidden] { display: none; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-8px); } }
+  .menu-panel ul { list-style: none; margin: 0 auto; padding: 0; max-width: 560px; }
+  .menu-panel li a { display: flex; align-items: center; justify-content: space-between; padding: 14px 4px; border-bottom: 1px dashed rgba(241, 234, 216, .14);
+                     color: var(--foam); text-decoration: none; font: 400 22px/1.2 var(--display); }
+  .menu-panel li a::after { content: "›"; color: var(--beer); font-size: 26px; }
+  .menu-panel li a:active { color: var(--beer); }
+  .menu-panel .btn { margin: 20px auto 0; display: flex; justify-content: center; max-width: 560px; }
+  /* las redes: en el menú del móvil, debajo del botón de jugar; en la cabecera del ordenador, cuando caben */
+  .follow { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 18px auto 4px; max-width: 560px; color: var(--chalk-dim); font-weight: 500; }
+  .follow > span { margin-right: 4px; }
+  .follow a, .top .soc a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(241, 234, 216, .3); color: var(--chalk); }
+  .follow a:hover, .top .soc a:hover { border-color: var(--beer); color: var(--beer); }
+  .follow svg, .top .soc svg { width: 22px; height: 22px; }
+  .top .soc { display: none; gap: 6px; margin: 0; flex: none; }
+  .top .soc a { width: 36px; height: 36px; }
+  .top .soc svg { width: 18px; height: 18px; }
+  @media (min-width: 1290px) { .top .soc { display: flex; } }
+  @media (max-width: 1149px) { .js .burger { display: grid; } }
+  @media (max-width: 400px) { .top .wrap { gap: 10px; } .logo img { height: 36px; } .logo .mark { height: 32px; } }
+  @media (max-width: 360px) { .top .wrap { gap: 8px; } .lang button { padding: 6px 8px; } .burger { width: 40px; height: 40px; } }
+  @media (max-width: 1219px) { .top .wrap > nav { gap: 14px; } .top .wrap > nav a { font-size: 14px; } }
+
+  /* ---------- portada: la pared del bar ---------- */
+  .hero { position: relative; overflow: hidden; padding-block: clamp(40px, 7vw, 88px) clamp(48px, 7vw, 96px);
+          background: radial-gradient(ellipse 70% 60% at 70% 30%, rgba(255, 196, 110, .22), transparent 70%),
+                      linear-gradient(180deg, var(--wall) 0%, #331209 100%); }
+  .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+                  background: repeating-linear-gradient(90deg, rgba(0, 0, 0, .12) 0 2px, transparent 2px 38px); }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .title svg { width: min(100%, 560px); height: auto; overflow: visible; }
+  .title text { font-family: var(--display); paint-order: stroke fill; stroke: var(--ink); stroke-linejoin: round; }
+  .tagline { margin-top: 18px; font: 400 clamp(22px, 2.6vw, 30px)/1.2 var(--display); color: var(--foam); max-width: 28ch; }
+  .lede { margin-top: 14px; max-width: 46ch; color: var(--chalk); opacity: .9; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; text-decoration: none;
+         font: 400 20px/1 var(--display); border: 0; cursor: pointer; }
+  .btn.beer { background: linear-gradient(180deg, #ffd04d, var(--beer)); color: var(--ink); box-shadow: 0 4px 0 var(--beer-deep), 0 10px 24px rgba(255, 179, 0, .25); }
+  .btn.beer:hover { transform: translateY(-1px); }
+  .btn.beer:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--beer-deep); }
+  .btn.soon { background: transparent; color: var(--chalk); border: 2px dashed rgba(241, 234, 216, .45); }
+  .btn.soon:hover { border-color: var(--beer); }
+  .btn svg { width: 22px; height: 22px; flex: none; }
+  .btn .sub { display: block; font: 500 12px/1.1 var(--body); opacity: .8; }
+  .cta-note { margin-top: 14px; font-size: 15px; color: var(--chalk); opacity: .85; }
+  .cta-note b { color: var(--beer); font-weight: 700; }
+  .cta-scope { margin-top: 4px; font-size: 14px; color: var(--chalk-dim); max-width: 52ch; }
+  kbd { display: inline-block; min-width: 1.6em; padding: 1px 6px; border-radius: 5px; text-align: center; font: 700 13px/1.4 var(--body);
+        color: var(--ink); background: var(--foam); box-shadow: 0 2px 0 var(--chalk-dim); }
+
+  /* el móvil con capturas que se van turnando (pantalla 9:16, como las capturas, para que no se recorten) */
+  .phone { justify-self: center; position: relative; width: min(100%, 320px); border-radius: 40px; padding: 12px;
+           background: linear-gradient(145deg, #3b3b40, #121214); box-shadow: 0 30px 60px rgba(0, 0, 0, .55), inset 0 0 0 2px #55555c; transform: rotate(3deg); }
+  .phone .screen { position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 30px; overflow: hidden; background: #000; }
+  .phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .phone::after { content: ""; position: absolute; top: 20px; left: 50%; width: 70px; height: 18px; margin-left: -35px; border-radius: 999px; background: #0c0c0e; }
+  .sticker { position: absolute; right: -14px; bottom: -20px; transform: rotate(-12deg); padding: 10px 14px; background: var(--red); color: #fff;
+             font: 400 16px/1.1 var(--hand); text-align: center; box-shadow: 0 6px 14px rgba(0, 0, 0, .35); border-radius: 4px; }
+  @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .phone { width: min(78vw, 280px); } }
+  /* en el móvil: título, botón y enseguida el juego en marcha; la explicación, debajo */
+  @media (max-width: 820px) {
+    .hero .wrap { gap: 0; }
+    .hero .copy { display: contents; }
+    .hero .eyebrow { order: 1; } .hero .title { order: 2; } .hero .tagline { order: 3; } .hero .cta { order: 4; margin-top: 22px; }
+    .hero .phone { order: 5; width: min(62vw, 250px); margin: 34px auto 10px; }
+    .hero .lede { order: 6; margin-top: 30px; } .hero .cta-note { order: 7; } .hero .cta-scope { order: 8; }
+  }
+
+  /* ---------- cómo se juega: servilletas pegadas en la pizarra ---------- */
+  .board { background: radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, .05), transparent 60%), var(--board);
+           padding-block: clamp(56px, 8vw, 96px); border-top: 10px solid var(--wood); border-bottom: 10px solid var(--wood);
+           box-shadow: inset 0 0 80px rgba(0, 0, 0, .45); }
+  .board h2 { font-family: var(--hand); font-size: clamp(30px, 4.6vw, 46px); color: var(--chalk); transform: rotate(-1.5deg); }
+  .board .intro { margin-top: 10px; color: var(--chalk-dim); max-width: 60ch; }
+
+  /* ---------- tres maneras de jugar: una servilleta por modo, con su captura ---------- */
+  .modes-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.6vw, 28px); margin-top: 34px; }
+  .mode { display: flex; flex-direction: column; background: var(--napkin); color: var(--ink); border-radius: 6px; overflow: hidden; box-shadow: 0 12px 26px rgba(0, 0, 0, .4); }
+  .mode img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-bottom: 6px solid var(--wood); }
+  .mode .mt { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 20px; }
+  .mode .tag { font: 700 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+  .mode h3 { font-size: 28px; color: var(--ink); }
+  .mode .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 9px; }
+  .mode .steps li { position: relative; padding-left: 34px; font-size: 15px; line-height: 1.4; color: #4a3626; counter-increment: s; }
+  .mode .steps li::before { content: counter(s); position: absolute; left: 0; top: -1px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-content: center;
+                            background: var(--beer); color: var(--ink); font: 400 14px/1 var(--display); box-shadow: 0 2px 0 var(--beer-deep); }
+  .mode .steps b { color: var(--ink); }
+  .mode .mfoot { margin-top: auto; padding-top: 10px; border-top: 2px dashed rgba(90, 70, 50, .25); font: 400 15px/1.35 var(--hand); color: #8f3510; }
+  .swipe { display: none; margin-top: 8px; font: 400 15px/1 var(--hand); color: var(--beer); }
+  @media (max-width: 820px) {
+    .modes-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 22px calc(-1 * var(--gutter)) 0; padding: 4px var(--gutter) 16px;
+                 scroll-padding-inline: var(--gutter); scrollbar-color: var(--beer) transparent; }
+    .mode { flex: 0 0 min(84%, 340px); scroll-snap-align: start; }
+    .mode img { aspect-ratio: 1 / 1; }
+    .swipe { display: block; }
+  }
+  /* ---------- las cervezas: medallones de grifo sobre la madera de la barra ---------- */
+  .bar { padding-block: clamp(56px, 8vw, 96px); background: linear-gradient(180deg, #8a5228 0, var(--wood) 14px, var(--wood-deep) 100%); position: relative; }
+  .bar::before { content: ""; position: absolute; inset: 0; opacity: .35; pointer-events: none;
+                 background: repeating-linear-gradient(92deg, rgba(0, 0, 0, .14) 0 2px, transparent 2px 9px, rgba(255, 220, 170, .05) 9px 11px, transparent 11px 23px); }
+  .bar .wrap { position: relative; }
+  .bar .intro { margin-top: 10px; max-width: 60ch; color: var(--chalk); opacity: .85; }
+  .taps { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 28px 18px; margin-top: 40px; list-style: none; padding: 0; }
+  .tap { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; min-width: 0; }
+  .medal { width: min(108px, 100%); aspect-ratio: 1; border-radius: 50%; padding: 6px; background: linear-gradient(135deg, #f4f6f8, #9aa1a8 45%, #e8ecef 60%, #7d848b);
+           box-shadow: 0 8px 18px rgba(0, 0, 0, .4); }
+  .medal div { width: 100%; height: 100%; border-radius: 50%; display: grid; place-content: center; text-align: center; padding: 8px;
+               background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .25), transparent 55%), var(--c); color: var(--k); }
+  .medal small { font: 700 9px/1 var(--body); letter-spacing: .1em; }
+  .medal strong { font: 400 15px/1 var(--display); margin-top: 3px; }
+  .tap h3 { font-size: 20px; }
+  .tap p { font-size: 14.5px; line-height: 1.4; color: var(--chalk-dim); max-width: 22ch; }
+  .tap .lvl { font: 400 14px/1 var(--hand); color: var(--beer); }
+  /* en tablet, sin descripción; en el móvil, en una fila que se desliza */
+  @media (max-width: 1079px) { .tap p { display: none; } .tap h3 { font-size: 16px; } }
+  @media (max-width: 819px) {
+    .taps { display: flex; overflow-x: auto; gap: 12px; margin: 26px calc(-1 * var(--gutter)) 0; padding: 4px var(--gutter) 14px;
+            scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-color: var(--beer) transparent; }
+    .tap { flex: 0 0 80px; gap: 6px; scroll-snap-align: start; }
+    .tap h3 { font-size: 14px; line-height: 1.1; } .tap .lvl { font-size: 12px; }
+    .medal { padding: 4px; } .medal div { padding: 3px; } .medal small { font-size: 6.5px; letter-spacing: .04em; } .medal strong { font-size: 10.5px; }
+  }
+  .looks-line { margin-top: clamp(32px, 5vw, 48px); padding: 18px 20px; max-width: 760px; background: var(--napkin); color: var(--ink); border-radius: 2px;
+                box-shadow: 0 10px 22px rgba(0, 0, 0, .35); transform: rotate(-.6deg); }
+  .looks-line h3 { font-size: 24px; } .looks-line p { margin-top: 6px; font-size: 15.5px; line-height: 1.5; color: #4a3626; }
+
+  /* ---------- retos: la conversación con tu amigo ---------- */
+  .retos { padding-block: clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 60% 70% at 75% 45%, rgba(255, 196, 110, .18), transparent 70%),
+           linear-gradient(180deg, var(--wall) 0%, #331209 100%); }
+  .retos .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .retos .intro { margin-top: 12px; max-width: 50ch; color: var(--chalk); opacity: .9; }
+  .retos .kinds { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+  .retos .kinds li { color: var(--chalk-dim); font-size: 15.5px; line-height: 1.45; }
+  .retos .kinds b { font: 400 20px/1.2 var(--display); color: var(--foam); margin-right: 6px; }
+  .chat { justify-self: center; width: min(100%, 380px); padding: 22px 16px 18px; border-radius: 28px; background: #17110d; border: 8px solid #141416;
+          box-shadow: 0 30px 60px rgba(0, 0, 0, .55), 0 0 0 2px #55555c; display: grid; gap: 14px; transform: rotate(-1.5deg); }
+  .msg { max-width: 88%; padding: 10px 14px 8px; border-radius: 16px; font-size: 15px; line-height: 1.45; overflow-wrap: anywhere; }
+  .msg small { display: block; font: 700 11px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; opacity: .65; margin-bottom: 6px; }
+  .msg .sq { letter-spacing: 1px; }
+  .msg .url { color: #1d5fa8; text-decoration: underline; font-size: 13.5px; }
+  .msg.me { justify-self: end; background: var(--napkin); color: var(--ink); border-bottom-right-radius: 4px; }
+  .msg.them { justify-self: start; background: var(--board); color: var(--chalk); border-bottom-left-radius: 4px; }
+  .msg.them .url { color: var(--beer); }
+  @media (max-width: 820px) { .retos .wrap { grid-template-columns: 1fr; } }
+
+  /* ---------- probarla antes que nadie: una servilleta amarilla ---------- */
+  .testers { padding-block: clamp(48px, 7vw, 88px); background: linear-gradient(180deg, var(--wall-deep), #2a120b); }
+  .ticket { position: relative; max-width: 760px; margin: 0 auto; padding: clamp(26px, 4vw, 40px); background: var(--beer); color: var(--ink); border-radius: 3px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, .45); transform: rotate(-.8deg); }
+  .ticket::before { content: ""; position: absolute; top: -12px; left: 50%; width: 110px; height: 26px; margin-left: -55px; transform: rotate(2deg);
+                    background: rgba(255, 248, 231, .75); box-shadow: 0 1px 2px rgba(0, 0, 0, .15); }
+  .ticket .eyebrow { color: var(--ink); opacity: .75; }
+  .ticket h2 { margin-top: 10px; font-size: clamp(28px, 4.4vw, 42px); }
+  .ticket p { margin-top: 12px; max-width: 58ch; font-size: 16.5px; }
+  .ticket .btn { margin-top: 20px; background: var(--ink); color: var(--foam); box-shadow: 0 4px 0 #000; }
+  .ticket .btn:hover { transform: translateY(-1px); }
+  .ticket .small { font-size: 14.5px; opacity: .85; }
+  .ticket a:not(.btn) { color: var(--ink); font-weight: 700; }
+
+  .shots { display: flex; gap: 18px; overflow-x: auto; padding: 28px 4px 18px; margin-top: 8px; scroll-snap-type: x mandatory; scrollbar-color: var(--beer) transparent; }
+  .shot { flex: 0 0 auto; width: clamp(180px, 22vw, 230px); scroll-snap-align: start; margin: 0; }
+  .shot img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 20px; border: 6px solid #141416; box-shadow: 0 14px 28px rgba(0, 0, 0, .45); }
+  .shot figcaption { margin-top: 10px; font-size: 14.5px; color: var(--chalk-dim); }
+
+  /* ---------- preguntas: en la pizarra ---------- */
+  .faq { background: var(--board); padding-block: clamp(56px, 8vw, 96px); border-top: 10px solid var(--wood); box-shadow: inset 0 0 80px rgba(0, 0, 0, .45); }
+  .faq h2 { font-family: var(--hand); font-size: clamp(30px, 4.6vw, 46px); transform: rotate(-1.5deg); }
+  .faq .qs { margin-top: 28px; display: grid; gap: 12px; max-width: 760px; }
+  .faq details { border-bottom: 2px dashed rgba(241, 234, 216, .2); padding: 6px 0 14px; }
+  .faq summary { cursor: pointer; list-style: none; font: 400 22px/1.3 var(--display); color: var(--foam); padding-right: 30px; position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: 4px; top: 0; color: var(--beer); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details p { margin-top: 8px; color: var(--chalk-dim); max-width: 64ch; }
+
+  /* ---------- el tráiler: un móvil grande, con sonido si le das ---------- */
+  .trailer { padding-block: clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(255, 196, 110, .18), transparent 70%), linear-gradient(180deg, #2a120b, var(--wall-deep)); }
+  .trailer .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .trailer .intro { margin-top: 12px; max-width: 44ch; color: var(--chalk); opacity: .9; }
+  .trailer video { display: block; width: min(80vw, 340px); aspect-ratio: 9 / 16; border-radius: 28px; border: 8px solid #141416; background: #000;
+                   box-shadow: 0 30px 60px rgba(0, 0, 0, .55), 0 0 0 2px #55555c; }
+  @media (max-width: 760px) { .trailer .wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; } .trailer .intro { margin-inline: auto; }
+                              .trailer .cta { justify-content: center; } }
+  .faq .cta { margin-top: 32px; }
+  .trailer .gallery { display: block; justify-items: normal; text-align: left; margin-top: clamp(40px, 6vw, 64px); }
+  .trailer .gallery .shots { width: 100%; }
+  .trailer .gallery h3 { font-size: clamp(24px, 3vw, 30px); color: var(--foam); }
+
+  /* ---------- el estudio ---------- */
+  .studio { padding-block: clamp(56px, 8vw, 96px); background: linear-gradient(180deg, #331209, var(--wall-deep)); }
+  .studio .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .studio p { margin-top: 14px; max-width: 52ch; }
+  .studio .contact { color: var(--chalk-dim); } .studio .contact a { font-weight: 700; margin-left: 4px; }
+  .social { display: grid; grid-template-columns: repeat(2, max-content); gap: 10px; margin-top: 18px; }
+  .social a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1.5px solid rgba(241, 234, 216, .3);
+              color: var(--chalk); text-decoration: none; font-weight: 500; }
+  .social a:hover { border-color: var(--beer); color: var(--beer); }
+  .social svg { width: 20px; height: 20px; flex: none; }
+  .studio .big { font: 400 clamp(26px, 3.4vw, 36px)/1.15 var(--display); color: var(--foam); margin-top: 16px; max-width: 24ch; }
+  .workshop { display: grid; gap: 18px; list-style: none; padding: 0; margin: 0; }
+  .workshop li { position: relative; background: var(--napkin); color: var(--ink); padding: 18px 20px; border-radius: 2px; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); }
+  .workshop li:nth-child(1) { transform: rotate(1.5deg); } .workshop li:nth-child(2) { transform: rotate(-1.2deg); } .workshop li:nth-child(3) { transform: rotate(.6deg); }
+  .workshop li::before { content: ""; position: absolute; top: -10px; left: 24px; width: 70px; height: 22px; transform: rotate(-5deg); background: rgba(200, 200, 190, .75); }
+  .workshop b { display: block; font: 400 22px/1.1 var(--display); }
+  .workshop span { font: 400 16px/1.4 var(--hand); color: #6a4a32; }
+  .workshop .now { background: var(--beer); }
+  .workshop .now span { color: var(--ink); }
+  @media (max-width: 820px) { .studio .wrap { grid-template-columns: 1fr; } }
+  /* agradecimientos (los pone scripts/build-site.mjs, de la misma lista que el juego) */
+  .thanks { padding-block: clamp(48px, 7vw, 80px); background: var(--board); border-top: 10px solid var(--wood); box-shadow: inset 0 0 80px rgba(0, 0, 0, .45); }
+  .thanks h2 { font-family: var(--hand); font-size: clamp(30px, 4.6vw, 46px); transform: rotate(-1.5deg); }
+  .thanks .intro { margin-top: 12px; color: var(--chalk-dim); max-width: 60ch; }
+  .thanks .ideas { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; align-items: start; }
+  .thanks .ideas li { background: var(--napkin); color: var(--ink); padding: 16px 18px; border-radius: 2px; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); transform: rotate(-1deg); }
+  .thanks .ideas li:nth-child(even) { transform: rotate(1.2deg); }
+  .thanks .ideas b { display: block; font: 400 22px/1.1 var(--display); }
+  .thanks .ideas span { font: 400 16px/1.4 var(--hand); color: #6a4a32; }
+  .thanks .ideas b span { font: inherit; color: inherit; }
+  .thanks .all { margin-top: 32px; font: 400 clamp(20px, 2.6vw, 26px)/1.25 var(--display); color: var(--foam); max-width: 40ch; }
+  .thanks .sorry { margin-top: 10px; color: var(--chalk-dim); }
+
+  /* ---------- pie ---------- */
+  footer { background: #140c09; padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); border-top: 8px solid var(--tile-blue); font-size: 14.5px; color: var(--chalk-dim); }
+  footer .wrap { display: grid; grid-template-columns: minmax(250px, 1fr) auto; gap: 16px 40px; }
+  footer nav { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px 22px; }
+  footer nav a { color: var(--chalk); }
+  footer .credits { grid-column: 1 / -1; font-size: 13px; line-height: 1.6; }
+  @media (max-width: 640px) { footer .wrap { grid-template-columns: 1fr; } }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Chapuza Game"><img class="mark" src="../img/chapuza-mark.webp" alt="" width="141" height="96"><img src="../img/chapuza-word.webp" alt="Chapuza Game" width="243" height="96"></a>
+    <nav aria-label="Secciones">
+      <a href="#modos"><span class="es">Modos de juego</span><span class="en">Game modes</span></a>
+      <a href="#retos"><span class="es">Retos</span><span class="en">Challenges</span></a>
+      <a href="#cervezas"><span class="es">Las cervezas</span><span class="en">The beers</span></a>
+      <a href="#trailer"><span class="es">Tráiler</span><span class="en">Trailer</span></a>
+      <a href="#probar"><span class="es">Pruébala</span><span class="en">Try it</span></a>
+      <a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a>
+      <a href="../prensa/"><span class="es">Prensa</span><span class="en">Press</span></a>
+    </nav>
+    <a class="btn beer play" href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="cabecera">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg><span><span class="es">Jugar</span><span class="en">Play</span></span>
+    </a>
+    <div class="soc" role="group" aria-label="Redes / Social">
+      <a href="https://www.instagram.com/chapuzagame/" aria-label="Instagram" title="Instagram" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/1365641213305515" aria-label="Facebook" title="Facebook" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.6 21V10.2c0-1.6.9-2.6 2.5-2.6h1.4M8.8 13h5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.tiktok.com/@chapuza.game" aria-label="TikTok" title="TikTok" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" aria-label="YouTube" title="YouTube" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set="es" aria-pressed="false">ES</button><button type="button" data-set="en" aria-pressed="true">EN</button>
+    </div>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú / Menu">
+      <svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="menu-panel" id="menu" aria-label="Menú / Menu" hidden>
+    <ul>
+      <li><a href="#modos"><span class="es">Tres maneras de jugar</span><span class="en">Three ways to play</span></a></li>
+      <li><a href="#retos"><span class="es">Reta a tus amigos</span><span class="en">Challenge your friends</span></a></li>
+      <li><a href="#cervezas"><span class="es">Las 16 cervezas</span><span class="en">The 16 beers</span></a></li>
+      <li><a href="#trailer"><span class="es">Tráiler y capturas</span><span class="en">Trailer and screenshots</span></a></li>
+      <li><a href="#probar"><span class="es">Pruébala antes que nadie</span><span class="en">Try it before anyone else</span></a></li>
+      <li><a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a></li>
+      <li><a href="#estudio"><span class="es">El estudio</span><span class="en">The studio</span></a></li>
+      <li><a href="../novedades/"><span class="es">Novedades</span><span class="en">What's new</span></a></li>
+      <li><a href="../prensa/"><span class="es">Prensa</span><span class="en">Press kit</span></a></li>
+    </ul>
+    <a class="btn beer" href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+      <span><span class="es">Jugar la demo gratis</span><span class="en">Play the free demo</span></span>
+    </a>
+    <p class="follow"><span class="es">Síguenos</span><span class="en">Follow us</span>
+      <a href="https://www.instagram.com/chapuzagame/" aria-label="Instagram" title="Instagram" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/1365641213305515" aria-label="Facebook" title="Facebook" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.6 21V10.2c0-1.6.9-2.6 2.5-2.6h1.4M8.8 13h5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.tiktok.com/@chapuza.game" aria-label="TikTok" title="TikTok" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" aria-label="YouTube" title="YouTube" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg></a></p>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="copy">
+        <p class="eyebrow"><span class="es">Un juego de Chapuza Game</span><span class="en">A game by Chapuza Game</span></p>
+        <h1 class="title" aria-label="How to Pour Beer">
+          <svg viewBox="0 0 560 190" role="img" aria-hidden="true">
+            <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2b0"/><stop offset=".5" stop-color="#ffc21a"/><stop offset="1" stop-color="#e8860c"/></linearGradient></defs>
+            <g transform="rotate(-4 280 95)">
+              <text x="280" y="62" text-anchor="middle" font-size="56" fill="#fff" stroke-width="12">HOW TO</text>
+              <text x="280" y="160" text-anchor="middle" font-size="112" fill="url(#g)" stroke-width="20">POUR BEER</text>
+            </g>
+          </svg>
+        </h1>
+        <p class="tagline"><span class="es">Tirar una caña parece fácil. No lo es.</span><span class="en">Pouring a beer looks easy. It isn't.</span></p>
+        <p class="lede">
+          <span class="es">Un juego de bar con tres maneras de jugar: reflejos en el modo clásico, oficio en el realista y tu propio bar, de la barra de pie a tu propia fábrica de cerveza. Se aprende en un segundo; clavarla es otra historia.</span>
+          <span class="en">A bar game with three ways to play: reflexes in classic mode, craft in realistic mode and your very own bar, from a standing counter to your own brewery. You learn it in a second; nailing it is another story.</span>
+        </p>
+        <div class="cta">
+          <a class="btn beer" href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="portada">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+            <span><span class="es">Jugar la demo gratis</span><span class="en">Play the free demo</span></span>
+          </a>
+          <a class="btn soon" id="playStore" href="#probar" data-umami-event="google-play-pronto">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5l9.5 8.5L5 20.5c-.6-.3-1-1-1-1.7V5.2c0-.7.4-1.4 1-1.7z" fill="#34a853"/><path d="M14.5 12l2.8-2.6 3.1 1.8c1 .6 1 2 0 2.6l-3.1 1.8z" fill="#fbbc04"/><path d="M5 3.5c.4-.2.9-.2 1.4.1l10.9 5.8-2.8 2.6z" fill="#4285f4"/><path d="M5 20.5l9.5-8.5 2.8 2.6-10.9 5.8c-.5.3-1 .3-1.4.1z" fill="#ea4335"/></svg>
+            <span><span class="sub"><span class="es">Próximamente</span><span class="en">Coming soon</span></span>Google Play</span>
+          </a>
+        </div>
+        <p class="cta-note"><span class="es"><b>En el navegador</b>, del móvil o del ordenador: sin descargas, sin registro y sin anuncios.</span><span class="en"><b>In your browser</b>, on your phone or computer: no download, no sign-up and no ads.</span></p>
+        <p class="cta-scope"><span class="es">La demo llega hasta el nivel 10 del clásico, las tres primeras cervezas del realista y el bar de barrio en Mi bar.</span><span class="en">The demo covers classic mode up to level 10, the first three beers of realistic mode and the neighbourhood bar in My bar.</span></p>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <video id="loop" autoplay muted loop playsinline preload="auto" data-src="../video/loop-{l}" data-poster="../img/screenshot-{l}-2.jpg"
+                 poster="../img/screenshot-en-2.jpg"></video>
+        </div>
+        <div class="sticker"><span class="es">¡Sin registros!</span><span class="en">No sign-up!</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="board modes" id="modos">
+    <div class="wrap">
+      <h2><span class="es">Tres maneras de jugar</span><span class="en">Three ways to play</span></h2>
+      <p class="intro"><span class="es">Las tres con el mismo grifo y las mismas 16 cervezas. Elige cómo quieres tirar.</span><span class="en">All three with the same tap and the same 16 beers. Pick how you want to pour.</span></p>
+      <p class="swipe"><span class="es">Desliza para ver las tres →</span><span class="en">Swipe to see all three →</span></p>
+      <div class="modes-row" tabindex="0" aria-label="Modos de juego / Game modes">
+        <article class="mode">
+          <img data-shot="2" src="../img/screenshot-en-2.jpg" alt="" loading="lazy" style="object-position: 50% 42%">
+          <div class="mt">
+            <p class="tag"><span class="es">Reflejos</span><span class="en">Reflexes</span></p>
+            <h3><span class="es">Modo clásico</span><span class="en">Classic mode</span></h3>
+            <ol class="steps">
+              <li><b><span class="es">Mantén pulsado</span><span class="en">Hold down</span></b> <span class="es">y sale la cerveza.</span><span class="en">and the beer flows.</span></li>
+              <li><b><span class="es">Suelta antes de la franja:</span><span class="en">Let go before the band:</span></b> <span class="es">aún cae un chorrito y la espuma sigue subiendo.</span><span class="en">a last drip still falls and the foam keeps rising.</span></li>
+              <li><b><span class="es">Acaba en la franja verde.</span><span class="en">Finish in the green band.</span></b> <span class="es">En el centro exacto, perfecta.</span><span class="en">Dead centre: perfect.</span></li>
+            </ol>
+            <p class="mfoot"><span class="es">3 vidas, un grifo cada vez más rápido y la Oktoberfest en el nivel 19.</span><span class="en">3 lives, an ever faster tap and the Oktoberfest at level 19.</span></p>
+          </div>
+        </article>
+        <article class="mode">
+          <img data-shot="6" src="../img/screenshot-en-6.jpg" alt="" loading="lazy" style="object-position: 50% 6%">
+          <div class="mt">
+            <p class="tag"><span class="es">Oficio</span><span class="en">Craft</span></p>
+            <h3><span class="es">Modo realista</span><span class="en">Realistic mode</span></h3>
+            <ol class="steps">
+              <li><b><span class="es">Enjuaga e inclina el vaso</span><span class="en">Rinse and tilt the glass</span></b> <span class="es">y abre el grifo: la cerveza resbala por la pared.</span><span class="en">and open the tap: the beer slides down the side.</span></li>
+              <li><b><span class="es">Endereza y remata al centro</span><span class="en">Straighten and finish in the middle</span></b> <span class="es">para hacer la corona; si sobresale, espátula.</span><span class="en">to build the head; if it sticks out, skim it.</span></li>
+              <li><b><span class="es">Don Ramón te pone nota</span><span class="en">Don Ramón scores you</span></b> <span class="es">de 0 a 100: con dos estrellas, la siguiente cerveza.</span><span class="en">out of 100: two stars unlock the next beer.</span></li>
+            </ol>
+            <p class="mfoot"><span class="es">Cada cerveza en su vaso, de la caña a la imperial en copa balón.</span><span class="en">Each beer in its own glass, from lager to imperial stout in a snifter.</span></p>
+          </div>
+        </article>
+        <article class="mode">
+          <img data-shot="4" src="../img/screenshot-en-4.jpg" alt="" loading="lazy" style="object-position: 50% 100%">
+          <div class="mt">
+            <p class="tag"><span class="es">Tu negocio</span><span class="en">Your business</span></p>
+            <h3><span class="es">Mi bar</span><span class="en">My bar</span></h3>
+            <ol class="steps">
+              <li><b><span class="es">Sirve tú:</span><span class="en">Pour yourself:</span></b> <span class="es">cada caña buena sube el ambiente.</span><span class="en">every good beer lifts the vibe.</span></li>
+              <li><b><span class="es">Mejora mesas, grifos y camareros</span><span class="en">Upgrade tables, taps and waiters</span></b> <span class="es">y amplía el local cuando se llene.</span><span class="en">and expand the place when it fills up.</span></li>
+              <li><b><span class="es">Inventa tu cerveza</span><span class="en">Brew your own beer</span></b> <span class="es">y que los clientes la pidan.</span><span class="en">and get the regulars ordering it.</span></li>
+            </ol>
+            <p class="mfoot"><span class="es">De la barra de pie a la Oktoberfest, y luego tu fábrica.</span><span class="en">From a standing counter to the Oktoberfest, then your brewery.</span></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="retos" id="retos">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="es">Reta a tus amigos</span><span class="en">Challenge your friends</span></p>
+        <h2 style="margin-top:10px"><span class="es">¿Me ganas?</span><span class="en">Can you beat me?</span></h2>
+        <p class="intro"><span class="es">Al acabar una partida, pulsa «Reta a un amigo» y mándale tu resultado por donde quieras. Lo abre en el navegador, sin descargar nada, y juega contra tu marca.</span><span class="en">When a game ends, tap "Challenge a friend" and send your score however you like. They open it in their browser, with nothing to download, and play against your score.</span></p>
+        <ul class="kinds">
+          <li><b><span class="es">En el clásico</span><span class="en">In classic mode</span></b><span class="es">tus cañas en cuadraditos: 🟩 perfecta, 🟨 buena, ⬜ corta, 🟥 pasada y 💦 derramada.</span><span class="en">your pours as little squares: 🟩 perfect, 🟨 good, ⬜ short, 🟥 over and 💦 spilled.</span></li>
+          <li><b><span class="es">En el realista</span><span class="en">In realistic mode</span></b><span class="es">la nota de Don Ramón, con la misma cerveza.</span><span class="en">Don Ramón's score, on the same beer.</span></li>
+          <li><b><span class="es">¡Restriégaselo!</span><span class="en">Rub it in!</span></b><span class="es">si le ganas, se lo mandas; a él le sale «¡Revancha!» y vuelta a empezar.</span><span class="en">beat them and send it back; they get "Rematch!" and off you go again.</span></li>
+        </ul>
+        <div class="cta">
+          <a class="btn beer" href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="retos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+            <span><span class="es">Jugar y retar</span><span class="en">Play and challenge</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="chat" role="img" aria-label="Ejemplo de reto / Challenge example">
+        <p class="msg me"><small><span class="es">Tú</span><span class="en">You</span></small>
+          <span class="es">🍺 How to Pour Beer · 1480 puntos en el nivel 10</span><span class="en">🍺 How to Pour Beer · 1480 points on level 10</span><br>
+          <span class="sq">🟩🟩🟨🟩🟥🟩🟩🟨🟩🟩</span><br>
+          <span class="es">¿Me ganas?</span><span class="en">Can you beat me?</span><br><span class="url">chapuzagame.github.io/…?reto=c1480</span></p>
+        <p class="msg them"><small><span class="es">Tu amigo</span><span class="en">Your friend</span></small>
+          <span class="es">🍺 How to Pour Beer · ¡Te he ganado! 1630 puntos contra tus 1480</span><span class="en">🍺 How to Pour Beer · I beat you! 1630 points to your 1480</span><br>
+          <span class="sq">🟩🟩🟩🟨🟩🟩🟩🟩🟨🟩</span><br>
+          <span class="es">¿Revancha?</span><span class="en">Rematch?</span><br><span class="url">chapuzagame.github.io/…?reto=c1630</span></p>
+        <p class="msg me"><small><span class="es">Tú</span><span class="en">You</span></small><span class="es">Ahora verás 😤</span><span class="en">Oh, it's on 😤</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bar" id="cervezas">
+    <div class="wrap">
+      <p class="eyebrow"><span class="es">De grifo</span><span class="en">On tap</span></p>
+      <h2 style="margin-top:10px"><span class="es">Dieciséis cervezas, dieciséis maneras de fallar</span><span class="en">Sixteen beers, sixteen ways to fail</span></h2>
+      <p class="intro"><span class="es">De menos a más difícil de tirar, cada una con su chorro, su espuma y su vaso. Las marcas son todas inventadas.</span><span class="en">From easiest to hardest to pour, each with its own flow, foam and glass. Every brand is made up.</span></p>
+      <ul class="taps">
+        <li class="tap"><div class="medal" style="--c:#1f6b3a;--k:#f6ecd0"><div><small>CERVEZAS</small><strong>PACO</strong></div></div><h3><span class="es">Caña</span><span class="en">Lager</span></h3><p><span class="es">La de toda la vida</span><span class="en">The good old classic</span></p><span class="lvl"><span class="es">nivel 1</span><span class="en">level 1</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#f2d22e;--k:#1f6b3a"><div><small>CLARITA</small><strong>PACO</strong></div></div><h3><span class="es">Clara</span><span class="en">Shandy</span></h3><p><span class="es">Con limón: tranquila y con poca espuma</span><span class="en">With lemon: calm and not very foamy</span></p><span class="lvl"><span class="es">nivel 3</span><span class="en">level 3</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#8f3510;--k:#ffe3b8"><div><small>CERVEZA</small><strong>LA<br>TOSTÁ</strong></div></div><h3><span class="es">Tostada</span><span class="en">Amber</span></h3><p><span class="es">Más lenta, poca sorpresa</span><span class="en">Slower, few surprises</span></p><span class="lvl"><span class="es">nivel 5</span><span class="en">level 5</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#b33a1d;--k:#ffe9c9"><div><small>RED ALE</small><strong>LA<br>PELIRROJA</strong></div></div><h3><span class="es">Roja</span><span class="en">Red ale</span></h3><p><span class="es">Irlandesa, suave y obediente</span><span class="en">Irish, smooth and well-behaved</span></p><span class="lvl"><span class="es">nivel 7</span><span class="en">level 7</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#c8102e;--k:#ffffff"><div><small>PILSNER</small><strong>LA<br>CHECA</strong></div></div><h3>Pilsner</h3><p><span class="es">Checa: vaso alto y mucha corona</span><span class="en">Czech: tall glass and a big head</span></p><span class="lvl"><span class="es">nivel 9</span><span class="en">level 9</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#0f6560;--k:#ffe066"><div><small>IPA</small><strong>LÚPULO<br>LOCO</strong></div></div><h3>IPA</h3><p><span class="es">Lupulada y espumosa</span><span class="en">Hoppy and foamy</span></p><span class="lvl"><span class="es">nivel 11</span><span class="en">level 11</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#ece6d6;--k:#b3261e"><div><small>0,0</small><strong>CERO<br>PATATERO</strong></div></div><h3><span class="es">Sin alcohol</span><span class="en">Alcohol-free</span></h3><p><span class="es">Sale disparada y casi sin espuma</span><span class="en">Shoots out with hardly any foam</span></p><span class="lvl"><span class="es">nivel 13</span><span class="en">level 13</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#1d4f9a;--k:#ffffff"><div><small>TRIGO</small><strong>LA<br>MOLINERA</strong></div></div><h3><span class="es">Trigo</span><span class="en">Wheat</span></h3><p><span class="es">Vaso alto y espuma descontrolada</span><span class="en">Tall glass, unruly foam</span></p><span class="lvl"><span class="es">nivel 15</span><span class="en">level 15</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#e07b24;--k:#fff4d6"><div><small>HAZY</small><strong>LA<br>NEBLINA</strong></div></div><h3><span class="es">Turbia</span><span class="en">Hazy</span></h3><p><span class="es">Como un zumo de naranja, y espumosa</span><span class="en">Like orange juice, and foamy</span></p><span class="lvl"><span class="es">nivel 17</span><span class="en">level 17</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#1d5fa8;--k:#ffffff"><div><small>FESTBIER</small><strong>PACO<br>BRÄU</strong></div></div><h3>Festbier</h3><p><span class="es">Un litro en jarra, en la Oktoberfest</span><span class="en">A litre in a stein, at the Oktoberfest</span></p><span class="lvl"><span class="es">nivel 19</span><span class="en">level 19</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#5b3a8c;--k:#f3e3a3"><div><small>ABADÍA DE</small><strong>SAN<br>PACO</strong></div></div><h3><span class="es">Abadía</span><span class="en">Abbey</span></h3><p><span class="es">Belga, en copa ancha y con espuma de monje</span><span class="en">Belgian, in a wide chalice with a monk-worthy head</span></p><span class="lvl"><span class="es">nivel 21</span><span class="en">level 21</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#e9e2cf;--k:#1d4f9a"><div><small>KÖLSCH</small><strong>DOM<br>PACO</strong></div></div><h3>Kölsch</h3><p><span class="es">Vaso estrecho y el grifo a toda prisa</span><span class="en">Narrow glass and a tap in a hurry</span></p><span class="lvl"><span class="es">nivel 23</span><span class="en">level 23</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#8e1b3a;--k:#ffd6e0"><div><small>KRIEK</small><strong>LA<br>GUINDA</strong></div></div><h3><span class="es">Cereza</span><span class="en">Cherry</span></h3><p><span class="es">Ácida, roja y traicionera</span><span class="en">Sour, red and treacherous</span></p><span class="lvl"><span class="es">nivel 25</span><span class="en">level 25</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#141414;--k:#d9b45a"><div><small>LA VIUDA</small><strong>NEGRA</strong></div></div><h3><span class="es">Negra</span><span class="en">Stout</span></h3><p><span class="es">Lenta, y la espuma sube tarde</span><span class="en">Slow, and the foam rises late</span></p><span class="lvl"><span class="es">nivel 27</span><span class="en">level 27</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#3b2a1a;--k:#f0c060"><div><small>BOCK</small><strong>EL<br>CHIVO</strong></div></div><h3>Bock</h3><p><span class="es">Fuerte, lenta y con sorpresa al final</span><span class="en">Strong, slow, with a surprise at the end</span></p><span class="lvl"><span class="es">nivel 29</span><span class="en">level 29</span></span></li>
+        <li class="tap"><div class="medal" style="--c:#2a0f2f;--k:#e8c76a"><div><small>IMPERIAL</small><strong>LA<br>ZARINA</strong></div></div><h3>Imperial</h3><p><span class="es">Negra, espesa, y la espuma tarda una eternidad</span><span class="en">Black, thick, and the head takes forever</span></p><span class="lvl"><span class="es">nivel 31</span><span class="en">level 31</span></span></li>
+      </ul>
+      <div class="looks-line">
+        <h3><span class="es">Y tu bar, a tu manera</span><span class="en">And your bar, your way</span></h3>
+        <p><span class="es">Un chiringuito en la playa, una taberna irlandesa o una Bierhalle alemana; 10 trajes para tu camarero, 7 vasos, 9 carnets y 3 decoraciones. Unas se ganan jugando y el resto, en la tienda.</span><span class="en">A beach bar, an Irish pub or a German beer hall; 10 outfits for your bartender, 7 glasses, 9 cards and 3 decorations. Some are earned by playing and the rest are in the shop.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="trailer" id="trailer">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="es">Míralo en marcha</span><span class="en">See it in action</span></p>
+        <h2 style="margin-top:10px"><span class="es">Medio minuto de cañas</span><span class="en">Half a minute of beers</span></h2>
+        <p class="intro"><span class="es">Una que se sale, una perfecta, la jarra de litro de la Oktoberfest, la nota de Don Ramón y tu bar en la playa. Con el sonido del juego: dale al play con el volumen puesto.</span><span class="en">One that spills, a perfect one, the Oktoberfest litre stein, Don Ramón's score and your bar on the beach. With the game's own sound: hit play with the volume up.</span></p>
+        <div class="cta">
+          <a class="btn beer" href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="trailer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+            <span><span class="es">Jugar la demo gratis</span><span class="en">Play the free demo</span></span>
+          </a>
+        </div>
+      </div>
+      <video id="trailerVideo" controls playsinline preload="none" data-src="../video/trailer-{l}" data-poster="../video/trailer-{l}.jpg"
+             poster="../video/trailer-en.jpg" data-umami-event="ver-trailer"></video>
+    </div>
+    <div class="wrap gallery">
+      <h3><span class="es">Del primer culín a la Oktoberfest</span><span class="en">From the first drop to the Oktoberfest</span></h3>
+      <div class="shots" tabindex="0" aria-label="Capturas / Screenshots">
+        <figure class="shot"><img data-shot="1" alt="" loading="lazy" src="../img/screenshot-en-1.jpg"><figcaption><span class="es">El menú: clásico, realista, Mi bar y tienda</span><span class="en">The menu: classic, realistic, My bar and shop</span></figcaption></figure>
+        <figure class="shot"><img data-shot="3" alt="" loading="lazy" src="../img/screenshot-en-3.jpg"><figcaption><span class="es">La carpa de la Oktoberfest</span><span class="en">The Oktoberfest tent</span></figcaption></figure>
+        <figure class="shot"><img data-shot="5" alt="" loading="lazy" src="../img/screenshot-en-5.jpg"><figcaption><span class="es">Realista: inclinada, resbalando por la pared</span><span class="en">Realistic: tilted, sliding down the side</span></figcaption></figure>
+        <figure class="shot"><img data-shot="7" alt="" loading="lazy" src="../img/screenshot-en-7.jpg"><figcaption><span class="es">La carta del realista</span><span class="en">The realistic beer menu</span></figcaption></figure>
+        <figure class="shot"><img data-shot="9" alt="" loading="lazy" src="../img/screenshot-en-9.jpg"><figcaption><span class="es">Mi bar: chiringuito de playa</span><span class="en">My bar: beach bar</span></figcaption></figure>
+        <figure class="shot"><img data-shot="10" alt="" loading="lazy" src="../img/screenshot-en-10.jpg"><figcaption><span class="es">Mi bar: Bierhalle alemana</span><span class="en">My bar: German beer hall</span></figcaption></figure>
+        <figure class="shot"><img data-shot="8" alt="" loading="lazy" src="../img/screenshot-en-8.jpg"><figcaption><span class="es">Tu carnet de camarero</span><span class="en">Your Bartender ID</span></figcaption></figure>
+        <figure class="shot"><img data-shot="11" alt="" loading="lazy" src="../img/screenshot-en-11.jpg"><figcaption><span class="es">Tu carnet, de feria</span><span class="en">Your ID, fairground style</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="testers" id="probar">
+    <div class="wrap">
+      <div class="ticket">
+        <p class="eyebrow"><span class="es">Pronto en Google Play</span><span class="en">Soon on Google Play</span></p>
+        <h2><span class="es">¿La quieres probar antes que nadie?</span><span class="en">Want to try it before anyone else?</span></h2>
+        <p><span class="es">Antes de salir en Google Play, la app pasa por una prueba cerrada. Si tienes un móvil Android, apúntate en un minuto: te unes al grupo de testers y la instalas desde Google Play.</span><span class="en">Before it comes out on Google Play, the app goes through a closed test. If you have an Android phone, sign up in a minute: join the testers group and install it from Google Play.</span></p>
+        <a class="btn es" href="../beta/" data-umami-event="tester">Apúntame</a>
+        <a class="btn en" href="../beta/" data-umami-event="tester">Count me in</a>
+        <p class="small"><span class="es">¿Sin Android? Síguenos y te avisamos cuando salga:</span><span class="en">No Android? Follow us and we'll let you know when it's out:</span>
+          <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a> ·
+          <a href="https://www.facebook.com/1365641213305515" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook">Facebook</a> ·
+          <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a> ·
+          <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube">YouTube</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="preguntas">
+    <div class="wrap">
+      <h2><span class="es">Preguntas de barra</span><span class="en">Bar talk</span></h2>
+      <div class="qs">
+        <details open><summary><span class="es">¿Cuánto cuesta?</span><span class="en">How much is it?</span></summary>
+          <p><span class="es">Nada. La demo del navegador es gratis y sin anuncios. La app será gratis, con anuncios (se quitan para siempre con una sola compra) y compras opcionales: aspecto para tu bar y ayudas para Mi bar.</span><span class="en">Nothing. The browser demo is free and has no ads. The app will be free, with ads (removed for good with a single purchase) and optional purchases: looks for your bar and boosts for My bar.</span></p></details>
+        <details><summary><span class="es">¿Dónde se juega?</span><span class="en">Where can I play?</span></summary>
+          <p><span class="es">La demo, en el navegador del móvil o del ordenador, sin descargar nada. El juego completo, muy pronto en Android, en Google Play.</span><span class="en">The demo, in the browser on your phone or computer, with nothing to download. The full game, very soon on Android, on Google Play.</span>
+            <span class="es">¿La quieres probar antes? <a href="#probar">Apúntate</a>.</span><span class="en">Want to try it first? <a href="#probar">Sign up</a>.</span></p></details>
+        <details><summary><span class="es">¿Puedo retar a mis amigos?</span><span class="en">Can I challenge my friends?</span></summary>
+          <p><span class="es">Sí. Al acabar una partida del clásico, al recibir la nota de Don Ramón o al final de la demo, pulsa «Reta a un amigo» y mándale el enlace por donde quieras. Lo abre en el navegador, sin descargar nada. Si te gana, te lo restriega. Y sin trampas: un reto antiguo no vale si ya hay uno más nuevo.</span><span class="en">Yes. When a classic game ends, when Don Ramón gives you a score or at the end of the demo, tap "Challenge a friend" and send them the link however you like. They open it in the browser, with nothing to download. If they beat you, they'll rub it in. And no cheating: an old challenge doesn't count once there's a newer one.</span></p></details>
+        <details><summary><span class="es">¿Qué tiene el juego completo que no tenga la demo?</span><span class="en">What does the full game have that the demo doesn't?</span></summary>
+          <p><span class="es">Las 16 cervezas, la Oktoberfest, el modo realista entero, tu bar hasta la carpa de la Oktoberfest con sus 10 tapas, tu propia fábrica de cerveza, la tienda y el carnet de camarero con 6 rangos y 71 logros.</span><span class="en">All 16 beers, the Oktoberfest, the whole realistic mode, your bar all the way to the stadium with its 7 tapas, the shop and the Bartender ID with 6 ranks and 71 achievements.</span></p></details>
+        <details><summary><span class="es">¿Se puede jugar en el ordenador?</span><span class="en">Can I play on a computer?</span></summary>
+          <p><span class="es">Sí. En el clásico, mantén pulsado el ratón o la barra <kbd>espacio</kbd>. En el realista, con el ratón, o con <kbd>espacio</kbd> para abrir, <kbd>←</kbd> <kbd>→</kbd> para inclinar, <kbd>E</kbd> para enjuagar, <kbd>C</kbd> para cortar la espuma e <kbd>Intro</kbd> para servir.</span><span class="en">Yes. In classic mode, hold the mouse button or the <kbd>space</kbd> bar. In realistic mode, use the mouse, or <kbd>space</kbd> to pour, <kbd>←</kbd> <kbd>→</kbd> to tilt, <kbd>E</kbd> to rinse, <kbd>C</kbd> to skim and <kbd>Enter</kbd> to serve.</span></p></details>
+        <details><summary><span class="es">¿Hay que registrarse?</span><span class="en">Do I need an account?</span></summary>
+          <p><span class="es">No. No hay cuentas: tu partida se guarda en tu móvil o en tu navegador.</span><span class="en">No. There are no accounts: your progress is saved on your phone or in your browser.</span></p></details>
+        <details><summary><span class="es">¿En qué idiomas está?</span><span class="en">What languages is it in?</span></summary>
+          <p><span class="es">En español y en inglés. Sale en el idioma de tu móvil y se cambia con un toque.</span><span class="en">English and Spanish. It starts in your phone's language and you can switch with one tap.</span></p></details>
+        <details><summary><span class="es">¿Para qué edad es?</span><span class="en">What age is it for?</span></summary>
+          <p><span class="es">Para mayores de 18 años: va de servir cerveza. Y en la vida real, con moderación.</span><span class="en">18 and over: it's about serving beer. And in real life, drink responsibly.</span></p></details>
+      </div>
+      <div class="cta">
+        <a class="btn beer" href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="preguntas">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+          <span><span class="es">Jugar la demo gratis</span><span class="en">Play the free demo</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="studio" id="estudio">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="es">El estudio</span><span class="en">The studio</span></p>
+        <h2><img class="studio-logo" src="../img/chapuza-logo.webp" alt="Chapuza Game" width="405" height="434" loading="lazy"></h2>
+        <p class="big"><span class="es">Juegos cortos y tontos sobre cosas de todos los días que nadie sabe hacer bien.</span><span class="en">Short, silly games about everyday things nobody really knows how to do.</span></p>
+        <p><span class="es">Una chapuza es algo hecho de aquella manera. Aquí hacemos juegos en los que tú eres el de la chapuza: se aprenden en un segundo y cuesta un mundo hacerlos bien.</span>
+           <span class="en">In Spanish, a "chapuza" is a botched job. Our games are about you botching everyday things: you learn them in a second and it takes forever to get them right.</span></p>
+        <p class="contact"><span class="es">¿Ideas, fallos o una caña mal tirada que contarnos?</span><span class="en">Ideas, bugs or a badly poured beer to report?</span>
+          <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a></p>
+        <p class="social">
+          <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>Instagram</a>
+          <a href="https://www.facebook.com/1365641213305515" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.6 21V10.2c0-1.6.9-2.6 2.5-2.6h1.4M8.8 13h5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Facebook</a>
+          <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>TikTok</a>
+          <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg>YouTube</a>
+        </p>
+      </div>
+      <ul class="workshop" aria-label="Juegos / Games">
+        <li class="now"><b>How to Pour Beer</b><span><span class="es">demo en el navegador · el juego completo, pronto en Google Play</span><span class="en">demo in your browser · the full game on Google Play soon</span></span></li>
+      </ul>
+    </div>
+  </section>
+  <section class="thanks" id="gracias">
+    <div class="wrap">
+      <p class="eyebrow"><span class="es">¡Salud!</span><span class="en">Cheers!</span></p>
+      <h2><span class="es">Agradecimientos</span><span class="en">Thanks</span></h2>
+      <p class="intro"><span class="es">How to Pour Beer también es de quien lo probó antes que nadie y nos dijo lo que pensaba.</span><span class="en">How to Pour Beer also belongs to everyone who tried it before anyone else and told us what they thought.</span></p>
+      <ul class="ideas">
+        <li><b>Laura</b><span class="es">Mi mujer. Por aguantar las noches de chapuza, probar cada caña antes que nadie y decirme la verdad aunque estuviera mal tirada. Y «Reta a un amigo» es idea suya.</span><span class="en">My wife. For putting up with the late botch-job nights, trying every beer before anyone else and telling me the truth, even when it was badly poured. And &quot;Challenge a friend&quot; was Laura's idea.</span></li>
+        <li><b>Julia</b><span class="es">Mi madre. Por creer en mí mucho antes de la primera caña. Esta va por ti.</span><span class="en">My mum. For believing in me long before the first beer. This one's for you.</span></li>
+        <li><b>Mikel</b><span class="es">Mi colega, un risas. Por la idea de las pesetas y por calentarme hasta que tiré para adelante con el proyecto. La próxima ronda la pago yo… en pesetas.</span><span class="en">My mate, always a laugh. For the pesetas idea and for egging me on until I went for it with this project. Next round's on me… in pesetas.</span></li>
+        <li><b>Jorge</b><span class="es">Mi hermano. Por el modo realista, ese que yo le decía que era imposible. Pues aquí está.</span><span class="en">My brother. For realistic mode, the one I kept saying was impossible. Well, here it is.</span></li>
+        <li><b>Javier G.</b><span class="es">Por las ideas para Mi bar: más cosas que comprar, nada de quedarse esperando y darle una historia, la de Don Ramón.</span><span class="en">For the ideas for My bar: more things to buy, no more sitting around waiting, and giving it a story: Don Ramón's.</span></li>
+      </ul>
+      <p class="all"><span class="es">Y a todos los testers de la beta, por jugar, apoyar y dar su opinión.</span><span class="en">And to all the beta testers, for playing, cheering us on and telling us what they think.</span></p>
+      <p class="sorry"><span class="es">Perdonad si nos hemos olvidado de alguien: avisadnos y os ponemos.</span><span class="en">Sorry if we've left anyone out: let us know and we'll add you.</span></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="foot-logo" src="../img/chapuza-logo.webp" alt="Chapuza Game" width="405" height="434" loading="lazy">
+      <p style="margin-top:10px">© 2026 Chapuza Game. <span class="es">Todos los derechos reservados.</span><span class="en">All rights reserved.</span></p>
+    </div>
+    <nav aria-label="Enlaces">
+      <a href="../how-to-pour-beer/" data-umami-event="jugar-demo" data-umami-event-desde="pie"><span class="es">Jugar la demo</span><span class="en">Play the demo</span></a>
+      <a href="../novedades/"><span class="es">Novedades</span><span class="en">What's new</span></a>
+      <a href="../prensa/"><span class="es">Prensa</span><span class="en">Press kit</span></a>
+      <a href="../privacy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
+      <a href="https://www.instagram.com/chapuzagame/" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="instagram">Instagram</a>
+      <a href="https://www.facebook.com/1365641213305515" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="facebook">Facebook</a>
+      <a href="https://www.tiktok.com/@chapuza.game" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="tiktok">TikTok</a>
+      <a href="https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA" target="_blank" rel="me noopener" data-umami-event="red-social" data-umami-event-red="youtube">YouTube</a>
+      <a href="mailto:chapuzagame@gmail.com">chapuzagame@gmail.com</a>
+    </nav>
+    <p class="credits">
+      <span class="es">El juego trata de servir cerveza y está pensado para mayores de 18 años. Bebe con moderación (en la vida real). Las marcas de cerveza del juego son inventadas.
+        Sonidos: "Beer pouring into glass" (freesound_community, Pixabay), "Very crowded pub or party loop" (Mixkit) y "Duct Tape Rip" (kai_audio, Pixabay). Tipografías: Lilita One y Rubik (SIL Open Font License) y Permanent Marker (Apache 2.0).</span>
+      <span class="en">The game is about serving beer and is meant for people aged 18 and over. Drink responsibly (in real life). Every beer brand in the game is made up.
+        Sounds: "Beer pouring into glass" (freesound_community, Pixabay), "Very crowded pub or party loop" (Mixkit) and "Duct Tape Rip" (kai_audio, Pixabay). Fonts: Lilita One and Rubik (SIL Open Font License) and Permanent Marker (Apache 2.0).</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // el idioma de la página (el de la dirección): sus capturas y sus vídeos
+  const root = document.documentElement;
+  // si el sistema pide menos movimiento, el vídeo de la portada se queda quieto (en su primera imagen)
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // los vídeos, en WebM (más ligero) donde se puede y si no en MP4, que lo reproduce todo el mundo
+  const EXT = document.createElement('video').canPlayType('video/webm; codecs="vp9"') ? '.webm' : '.mp4';
+  if (still) { const v = document.getElementById('loop'); v.removeAttribute('autoplay'); v.pause(); }
+  function setLang(l) {
+    root.dataset.lang = l; root.lang = l;
+    document.title = l === 'es' ? 'How to Pour Beer · El juego de tirar cañas · Chapuza Game' : 'How to Pour Beer · The beer pouring game · Chapuza Game';
+    for (const b of document.querySelectorAll('.lang button')) b.setAttribute('aria-pressed', String(b.dataset.set === l));
+    for (const img of document.querySelectorAll('img[data-shot]')) img.src = `../img/screenshot-${l}-${img.dataset.shot}.jpg`;
+    for (const v of document.querySelectorAll('video[data-src]')) {
+      const src = v.dataset.src.replace('{l}', l) + EXT;
+      if (v.getAttribute('src') !== src) { v.poster = v.dataset.poster.replace('{l}', l); v.src = src; if (v.autoplay && !still) v.play().catch(() => {}); }
+    }
+    try { localStorage.setItem('cg_lang', l); } catch (e) {}
+  }
+  setLang(root.lang);
+  // el otro idioma está en la otra dirección (la de arriba lleva a ella si ya lo habías elegido)
+  for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => {
+    if (b.dataset.set === root.lang) return;
+    try { localStorage.setItem('cg_lang', b.dataset.set); } catch (e) {}
+    location.href = (b.dataset.set === 'en' ? '/en/' : '/') + location.search + location.hash;
+  });
+  root.classList.add('js');
+  // el menú del móvil: se abre y se cierra con el botón, al elegir una sección, con Esc o tocando fuera
+  const burger = document.querySelector('.burger'), menu = document.getElementById('menu');
+  const openMenu = on => { burger.setAttribute('aria-expanded', String(on)); menu.hidden = !on; };
+  burger.addEventListener('click', () => openMenu(menu.hidden));
+  menu.addEventListener('click', e => { if (e.target.closest('a')) openMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { openMenu(false); burger.focus(); } });
+  addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.top')) openMenu(false); });
+  matchMedia('(min-width: 1150px)').addEventListener('change', e => { if (e.matches) openMenu(false); });
+  // la sección en la que estás, marcada en la barra y en el menú: la que cruza la mitad de la pantalla
+  if ('IntersectionObserver' in window) {
+    const links = [...document.querySelectorAll('.top a[href^="#"]:not([href="#"])')];
+    const spy = new IntersectionObserver(es => {
+      for (const e of es) if (e.isIntersecting) for (const a of links) {
+        const on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      }
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    for (const sec of document.querySelectorAll('main > section')) spy.observe(sec);
+  }
+  // el botón de jugar de la cabecera sale cuando el de la portada ya ha quedado arriba
+  if ('IntersectionObserver' in window) {
+    root.classList.add('io');
+    new IntersectionObserver(([e]) => root.classList.toggle('past-hero', !e.isIntersecting && e.boundingClientRect.top < 0))
+      .observe(document.querySelector('.hero .cta'));
+  }
+</script>
+</body>
+</html>

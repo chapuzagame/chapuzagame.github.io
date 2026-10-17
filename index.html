@@ -7,6 +7,11 @@
 <meta name="description" content="Tirar una caña parece fácil. No lo es. Un juego de bar con tres modos: clásico, realista y tu propio bar. Juega gratis la demo en el navegador, sin descargas ni registro.">
 <meta name="theme-color" content="#1b130f">
 <link rel="canonical" href="https://chapuzagame.github.io/">
+<!-- cada idioma en su dirección (la portada, en español; /en/, en inglés: la monta scripts/build-site.mjs), para que los
+     buscadores enseñen cada una a quien la busca en su idioma -->
+<link rel="alternate" hreflang="es" href="https://chapuzagame.github.io/">
+<link rel="alternate" hreflang="en" href="https://chapuzagame.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://chapuzagame.github.io/en/">
 <!-- la vista previa al compartir el enlace (WhatsApp, redes...): las direcciones, completas, o no sale la imagen -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Chapuza Game">
@@ -20,6 +25,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://chapuzagame.github.io/#web","url":"https://chapuzagame.github.io/","name":"Chapuza Game","inLanguage":["es","en"],"publisher":{"@id":"https://chapuzagame.github.io/#estudio"}},{"@type":"Organization","@id":"https://chapuzagame.github.io/#estudio","name":"Chapuza Game","url":"https://chapuzagame.github.io/","email":"chapuzagame@gmail.com","logo":{"@type":"ImageObject","url":"https://chapuzagame.github.io/prensa/img/chapuza-game-logo.png","width":405,"height":434},"sameAs":["https://www.instagram.com/chapuzagame/","https://www.facebook.com/1365641213305515","https://www.tiktok.com/@chapuza.game","https://www.youtube.com/channel/UC9Myjhg4Dnd7ezZKZjVvEqA"]},{"@type":"VideoGame","@id":"https://chapuzagame.github.io/#how-to-pour-beer","name":"How to Pour Beer","url":"https://chapuzagame.github.io/","description":"Tirar una caña parece fácil. No lo es. Un juego de bar con tres modos: clásico, realista y tu propio bar, de la barra de pie a tu propia fábrica de cerveza.","image":"https://chapuzagame.github.io/img/og-image.jpg","screenshot":["https://chapuzagame.github.io/img/screenshot-es-1.jpg","https://chapuzagame.github.io/img/screenshot-es-5.jpg","https://chapuzagame.github.io/img/screenshot-es-9.jpg"],"genre":["Casual","Simulación","Habilidad"],"playMode":"SinglePlayer","gamePlatform":["Navegador web","Android"],"applicationCategory":"GameApplication","operatingSystem":"Android, Web","inLanguage":["es","en"],"author":{"@id":"https://chapuzagame.github.io/#estudio"},"publisher":{"@id":"https://chapuzagame.github.io/#estudio"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","url":"https://chapuzagame.github.io/how-to-pour-beer/"}}]}</script>
 <link rel="icon" href="img/chapuza-favicon.ico" sizes="48x48">
 <link rel="icon" href="img/chapuza-icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="img/chapuza-icon-180.png">
@@ -43,6 +49,18 @@
   })();
 </script>
 <script src="origen.js"></script>
+<script>
+  // el idioma va en la dirección: la portada, en español, y /en/, en inglés. La primera vez, el del navegador; luego, el
+  // que elijas (cg_lang). A los buscadores no se les cambia: ven la página que piden (va después de origen.js, que ya ha
+  // apuntado de dónde llega la visita).
+  (function () {
+    var page = document.documentElement.lang, saved = null;
+    try { saved = localStorage.getItem('cg_lang'); } catch (e) {}
+    var bot = /bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(navigator.userAgent);
+    var want = saved === 'es' || saved === 'en' ? saved : bot ? page : /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
+    if (want !== page) location.replace((want === 'en' ? '/en/' : '/') + location.search + location.hash);
+  })();
+</script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="ab1eeda4-0cb4-4b62-a4dc-d466823fd7ff" data-domains="chapuzagame.github.io"></script>
 <style>
   /* Una barra de bar: pared granate arriba, la pizarra de las tapas, servilletas pegadas con cinta,
@@ -722,7 +740,7 @@
 </footer>
 
 <script>
-  // idioma: el del navegador la primera vez, luego el que elijas
+  // el idioma de la página (el de la dirección): sus capturas y sus vídeos
   const root = document.documentElement;
   // si el sistema pide menos movimiento, el vídeo de la portada se queda quieto (en su primera imagen)
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -740,9 +758,13 @@
     }
     try { localStorage.setItem('cg_lang', l); } catch (e) {}
   }
-  let saved = null; try { saved = localStorage.getItem('cg_lang'); } catch (e) {}
-  setLang(saved || (/^es\b/i.test(navigator.language || '') ? 'es' : 'en'));
-  for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => setLang(b.dataset.set));
+  setLang(root.lang);
+  // el otro idioma está en la otra dirección (la de arriba lleva a ella si ya lo habías elegido)
+  for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => {
+    if (b.dataset.set === root.lang) return;
+    try { localStorage.setItem('cg_lang', b.dataset.set); } catch (e) {}
+    location.href = (b.dataset.set === 'en' ? '/en/' : '/') + location.search + location.hash;
+  });
   root.classList.add('js');
   // el menú del móvil: se abre y se cierra con el botón, al elegir una sección, con Esc o tocando fuera
   const burger = document.querySelector('.burger'), menu = document.getElementById('menu');

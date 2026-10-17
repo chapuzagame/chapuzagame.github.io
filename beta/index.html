@@ -131,7 +131,8 @@
     document.querySelectorAll('.lang button').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.dataset.l); try { localStorage.setItem(KEY, b.dataset.l); } catch (e) {} });
     });
-    setLang(saved === 'es' || saved === 'en' ? saved : (/^es\b/i.test(navigator.language || '') ? 'es' : 'en'));
+    // a los buscadores, en español (el idioma de la página): si no, la verían en el de su navegador, el inglés
+    setLang(saved === 'es' || saved === 'en' ? saved : (/bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(navigator.userAgent) || /^es\b/i.test(navigator.language || '') ? 'es' : 'en'));
   })();
 </script>
 </body>
