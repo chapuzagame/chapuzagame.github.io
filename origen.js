@@ -15,7 +15,9 @@
     [/google|bing|duckduckgo|yahoo|ecosia|qwant|brave/, 'buscador']];
   var limpia = function (s, n) { return String(s || '').toLowerCase().replace(/[^a-z0-9._-]/g, '').slice(0, n); };
   var q = new URLSearchParams(location.search);
-  var de = limpia(q.get('de') || q.get('utm_source'), 30), p = limpia(q.get('p') || q.get('utm_campaign'), 40);
+  // un enlace de reto del juego: su «de» es el código de quien reta (lo lee el juego), no una red; el origen es «reto»
+  var reto = q.has('reto');
+  var de = reto ? 'reto' : limpia(q.get('de') || q.get('utm_source'), 30), p = reto ? '' : limpia(q.get('p') || q.get('utm_campaign'), 40);
   var o = null;
   try { o = JSON.parse(sessionStorage.getItem('cg-origen')); } catch (e) {}
   if (de || !o || !o.de) {                      // una visita nueva (o un enlace nuestro a media visita)
@@ -29,7 +31,7 @@
   window.cgOrigen = o;
   var guarda = function () { try { sessionStorage.setItem('cg-origen', JSON.stringify(o)); } catch (e) {} };
   guarda();
-  if (q.has('de') || q.has('p') || q.has('utm_source') || q.has('utm_medium') || q.has('utm_campaign')) {
+  if (!reto && (q.has('de') || q.has('p') || q.has('utm_source') || q.has('utm_medium') || q.has('utm_campaign'))) {
     ['de', 'p', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { q.delete(k); });
     var resto = q.toString();
     history.replaceState(history.state, '', location.pathname + (resto ? '?' + resto : '') + location.hash);
