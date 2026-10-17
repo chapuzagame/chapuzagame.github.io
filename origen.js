@@ -7,6 +7,8 @@
 //   - lo pasa a Google Play en los enlaces de la ficha (referrer): la app lo lee al instalarse.
 // Quita ?de y ?p de la barra de direcciones, para que quien copie el enlace no se lleve el origen de otro.
 (function () {
+  // si has pedido que no se cuenten tus visitas (el botón de la política de privacidad, o ?soyyo), no se apunta nada
+  try { if (localStorage.getItem('umami.disabled')) return; } catch (e) {}
   var RED = { ig: 'instagram', fb: 'facebook', tt: 'tiktok', yt: 'youtube', wa: 'whatsapp', gg: 'grupo', x: 'x' };
   var POR_WEB = [[/instagram/, 'instagram'], [/facebook|^fb\.|messenger/, 'facebook'], [/tiktok/, 'tiktok'],
     [/youtube|youtu\.be/, 'youtube'], [/whatsapp|^wa\.me/, 'whatsapp'], [/^t\.co$|twitter|^x\.com/, 'x'], [/reddit/, 'reddit'],

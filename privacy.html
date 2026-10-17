@@ -27,12 +27,13 @@
   nav a { padding: 6px 14px; border: 1px solid var(--dim); border-radius: 999px; text-decoration: none; }
   section { background: var(--card); border-radius: 14px; padding: 4px 20px 16px; margin-top: 24px; }
   code { background: rgba(0,0,0,.25); padding: 1px 5px; border-radius: 4px; }
+  .nocontar { margin-left: 4px; padding: 4px 12px; border: 1px solid var(--beer); border-radius: 999px; background: none; color: var(--beer); font: inherit; cursor: pointer; }
 </style>
 </head>
 <body>
 <main>
   <h1>How to Pour Beer</h1>
-  <small>Última actualización / Last updated: 17-10-2026 (10)</small>
+  <small>Última actualización / Last updated: 17-10-2026 (11)</small>
   <nav><a href="#es">Español</a><a href="#en">English</a></nav>
 
   <section id="es" lang="es">
@@ -84,6 +85,9 @@
       la app antes de que salga, usamos tu correo solo para invitarte a la prueba de Google Play y lo borramos cuando termine. No se usan para publicidad,
       no se cruzan con otros datos y no sirven para identificarte. La web está alojada en GitHub Pages, que, como cualquier
       servidor, recibe tu dirección IP al cargarla.</p>
+    <p>Desde qué web o publicación llegas se guarda solo en tu navegador mientras dura la visita (almacenamiento de sesión,
+      no es una cookie), para no contarla dos veces. Si no quieres que se cuenten tus visitas desde este navegador:
+      <button type="button" class="nocontar" data-l="es">No contar mis visitas</button></p>
 
     <h3>Estadísticas de la app</h3>
     <p>La app de Android cuenta también, con <b>Umami</b> y sin cookies ni identificadores (ni el de publicidad ni ningún
@@ -164,6 +168,9 @@
       They are not used
       for advertising, not combined with other data and cannot identify you. The site is hosted on GitHub Pages, which, like
       any server, receives your IP address when it loads.</p>
+    <p>Which site or post you came from is kept only in your browser while the visit lasts (session storage, not a
+      cookie), so it isn't counted twice. If you don't want your visits from this browser to be counted:
+      <button type="button" class="nocontar" data-l="en">Don't count my visits</button></p>
 
     <h3>App statistics</h3>
     <p>The Android app also counts, with <b>Umami</b> and without cookies or identifiers (neither the advertising ID nor any
@@ -196,5 +203,24 @@
     <p>If this policy changes, this page and the date above will be updated.</p>
   </section>
 </main>
+<script>
+  // no contar mis visitas: lo apunta en este navegador (umami.disabled, lo que mira Umami; y origen.js deja de guardar de
+  // dónde llegas) y se deshace con el mismo botón
+  (function () {
+    var T = { es: ['No contar mis visitas', 'Hecho: ya no se cuentan. Volver a contarlas'],
+      en: ["Don't count my visits", "Done: they're no longer counted. Count them again"] };
+    var fuera = function () { try { return !!localStorage.getItem('umami.disabled'); } catch (e) { return false; } };
+    var bs = document.querySelectorAll('.nocontar');
+    var pinta = function () { for (var i = 0; i < bs.length; i++) bs[i].textContent = T[bs[i].dataset.l][fuera() ? 1 : 0]; };
+    for (var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function () {
+      try {
+        if (fuera()) localStorage.removeItem('umami.disabled');
+        else { localStorage.setItem('umami.disabled', '1'); sessionStorage.removeItem('cg-origen'); }
+      } catch (e) {}
+      pinta();
+    });
+    pinta();
+  })();
+</script>
 </body>
 </html>
