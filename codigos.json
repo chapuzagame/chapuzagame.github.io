@@ -1,0 +1,4 @@
+{
+  "nota": "Códigos de las redes para How to Pour Beer: solo la huella de cada código (node tools/codigos/huella.mjs CÓDIGO, en el repositorio del juego), desde y hasta (incluidos) y lo que da (un id exclusivo de SHOP). Los que ya van dentro del juego no hace falta ponerlos.",
+  "codigos": []
+}
