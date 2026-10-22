@@ -769,6 +769,16 @@
     location.href = (b.dataset.set === 'en' ? '/en/' : '/') + location.search + location.hash;
   });
   root.classList.add('js');
+  // Google Play: mientras la app no está publicada, el botón lleva a apuntarse de tester («Próximamente»). Cuando lo está,
+  // beta/estado.json dice "play": true y el botón pasa a la ficha, con el origen de la visita (la app lo lee al instalarse)
+  fetch('/beta/estado.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(e => {
+    if (!e || e.play !== true) return;
+    const a = document.getElementById('playStore'), o = window.cgOrigen || {};
+    const ref = 'utm_source=' + (o.de || 'directo') + '&utm_medium=web' + (o.p ? '&utm_campaign=' + o.p : '');
+    a.href = 'https://play.google.com/store/apps/details?id=com.chapuzagame.howtopourbeer&referrer=' + encodeURIComponent(ref);
+    a.classList.remove('soon'); a.target = '_blank'; a.rel = 'noopener'; a.dataset.umamiEvent = 'google-play';
+    a.querySelector('.sub .es').textContent = 'Disponible en'; a.querySelector('.sub .en').textContent = 'Get it on';
+  }).catch(() => {});
   // el menú del móvil: se abre y se cierra con el botón, al elegir una sección, con Esc o tocando fuera
   const burger = document.querySelector('.burger'), menu = document.getElementById('menu');
   const openMenu = on => { burger.setAttribute('aria-expanded', String(on)); menu.hidden = !on; };

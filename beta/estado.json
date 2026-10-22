@@ -1,5 +1,6 @@
 {
   "beta": true,
+  "play": false,
   "testers": 12,
   "necesarios": 12,
   "fin": "2026-10-30"
