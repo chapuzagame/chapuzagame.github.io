@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Pour Beer · Chapuza Game</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://chapuzagame.github.io/en/">
+<!-- sin «de dónde vienes»: quien la escribe a mano viene de un vídeo, no de esta página -->
+<meta name="referrer" content="no-referrer">
+<style>html { background: #22100b; }</style>
+<script>
+  // chapuzagame.github.io/yt, la dirección corta que sale escrita al final de los Shorts de YouTube (allí los enlaces no
+  // se pueden pulsar): lleva a la portada en inglés (/en/) como un enlace con ?de=yt, y origen.js apunta allí el origen
+  // «youtube». Se queda con lo demás que traiga (?p=…, #…). Esta página no carga Umami ni origen.js, así que no cuenta
+  // como visita. Vale con barra final y sin ella (/yt, /yt/ o /yt/index.html).
+  (function () {
+    var DE = 'yt', A = 'en/';                  // A: la página de destino, desde la raíz de la web ('' la portada, 'en/' la inglesa)
+    var q = new URLSearchParams(location.search);
+    q.delete('de');
+    var resto = q.toString();
+    var raiz = location.pathname.replace(/\/(index\.html)?$/, '').replace(/[^/]*$/, '');
+    location.replace(raiz + A + '?de=' + DE + (resto ? '&' + resto : '') + location.hash);
+  })();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=../en/?de=yt"></noscript>
+</head>
+<body>
+<p><a href="../en/?de=yt" style="color:#ffb300">How to Pour Beer · Chapuza Game</a></p>
+</body>
+</html>

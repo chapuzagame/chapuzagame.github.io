@@ -7,6 +7,14 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="/img/chapuza-favicon.ico" sizes="48x48">
 <link rel="icon" href="/img/chapuza-icon-192.png" type="image/png" sizes="192x192">
+<script>
+  // las direcciones cortas de los vídeos (/tt, /yt) se escriben a mano: si llegan en mayúsculas o con algo de más
+  // (/TT, /Yt., /tt%20), a la buena, con lo que traigan
+  (function () {
+    var corta = location.pathname.toLowerCase().replace(/%[0-9a-f]{2}|[^a-z]/g, '');
+    if (corta === 'tt' || corta === 'yt') location.replace('/' + corta + '/' + location.search + location.hash);
+  })();
+</script>
 <style>
   /* la página de «no existe» (GitHub Pages la sirve para cualquier dirección que no esté): la pizarra del bar, con las
      direcciones desde la raíz porque puede salir a cualquier profundidad */
