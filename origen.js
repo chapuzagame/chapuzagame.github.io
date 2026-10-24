@@ -9,9 +9,10 @@
 (function () {
   // si has pedido que no se cuenten tus visitas (el botón de la política de privacidad, o ?soyyo), no se apunta nada
   try { if (localStorage.getItem('umami.disabled')) return; } catch (e) {}
-  var RED = { ig: 'instagram', fb: 'facebook', tt: 'tiktok', yt: 'youtube', wa: 'whatsapp', gg: 'grupo', x: 'x' };
+  var RED = { ig: 'instagram', fb: 'facebook', tt: 'tiktok', yt: 'youtube', wa: 'whatsapp', gg: 'grupo', x: 'x', bs: 'bluesky' };
   var POR_WEB = [[/instagram/, 'instagram'], [/facebook|^fb\.|messenger/, 'facebook'], [/tiktok/, 'tiktok'],
-    [/youtube|youtu\.be/, 'youtube'], [/whatsapp|^wa\.me/, 'whatsapp'], [/^t\.co$|twitter|^x\.com/, 'x'], [/reddit/, 'reddit'],
+    [/youtube|youtu\.be/, 'youtube'], [/whatsapp|^wa\.me/, 'whatsapp'], [/^t\.co$|twitter|^x\.com/, 'x'],
+    [/(^|\.)bsky\.(app|social)$/, 'bluesky'], [/reddit/, 'reddit'],
     [/google|bing|duckduckgo|yahoo|ecosia|qwant|brave/, 'buscador']];
   var limpia = function (s, n) { return String(s || '').toLowerCase().replace(/[^a-z0-9._-]/g, '').slice(0, n); };
   var q = new URLSearchParams(location.search);
